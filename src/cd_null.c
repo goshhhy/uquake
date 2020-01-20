@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -19,37 +19,16 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "quakedef.h"
 
-void CDAudio_Play(byte track, qboolean looping)
-{
-}
+void CDAudio_Play( byte track, qboolean looping ) {}
 
+void CDAudio_Stop( void ) {}
 
-void CDAudio_Stop(void)
-{
-}
+void CDAudio_Pause( void ) {}
 
+void CDAudio_Resume( void ) {}
 
-void CDAudio_Pause(void)
-{
-}
+void CDAudio_Update( void ) {}
 
+int CDAudio_Init( void ) { return 0; }
 
-void CDAudio_Resume(void)
-{
-}
-
-
-void CDAudio_Update(void)
-{
-}
-
-
-int CDAudio_Init(void)
-{
-	return 0;
-}
-
-
-void CDAudio_Shutdown(void)
-{
-}
+void CDAudio_Shutdown( void ) {}

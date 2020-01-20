@@ -8,7 +8,7 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 See the GNU General Public License for more details.
 
@@ -21,26 +21,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #include "net_loop.h"
 
-net_driver_t net_drivers[MAX_NET_DRIVERS] =
-{
-	{
-	"Loopback",
-	false,
-	Loop_Init,
-	Loop_Listen,
-	Loop_SearchForHosts,
-	Loop_Connect,
-	Loop_CheckNewConnections,
-	Loop_GetMessage,
-	Loop_SendMessage,
-	Loop_SendUnreliableMessage,
-	Loop_CanSendMessage,
-	Loop_CanSendUnreliableMessage,
-	Loop_Close,
-	Loop_Shutdown
-	}
-};
+net_driver_t net_drivers[MAX_NET_DRIVERS] = {
+    {"Loopback", false, Loop_Init, Loop_Listen, Loop_SearchForHosts,
+     Loop_Connect, Loop_CheckNewConnections, Loop_GetMessage, Loop_SendMessage,
+     Loop_SendUnreliableMessage, Loop_CanSendMessage,
+     Loop_CanSendUnreliableMessage, Loop_Close, Loop_Shutdown}};
 int net_numdrivers = 1;
 
-net_landriver_t	net_landrivers[MAX_NET_DRIVERS];
+net_landriver_t net_landrivers[MAX_NET_DRIVERS];
 int net_numlandrivers = 0;
