@@ -1,0 +1,9 @@
+build/
+*.dll
+*.pak
+*.PAK
+id1/
+ID1/
+Id1/
+rogue
+hipnotic
