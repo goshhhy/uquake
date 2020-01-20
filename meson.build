@@ -73,10 +73,7 @@ uquake_sources = [  'src/cl_demo.c',
                     'src/cd_linux.c',
                     'src/sys_linux.c',
                     'src/vid_x.c',
-                    'src/snd_dma.c',
-                    'src/snd_mem.c',
-                    'src/snd_mix.c',
-                    'src/snd_linux.c' ]
+                    'src/snd_null.c' ]
 
 executable('uquake', uquake_sources, dependencies : [x11, xshm, m_dep], install : true)
 
