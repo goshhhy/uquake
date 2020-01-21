@@ -1,4 +1,4 @@
-project('uquake', 'c', default_options : ['buildtype=debugoptimized', 'c_std=c89', 'warning_level=3'])
+project('uquake', 'c', default_options : ['buildtype=debug', 'c_std=gnu99', 'warning_level=3', 'optimization=0'])
 
 x11 = dependency('x11')
 xshm = dependency('xext')

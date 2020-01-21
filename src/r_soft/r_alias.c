@@ -643,7 +643,7 @@ void R_AliasSetupFrame( void ) {
     for ( i = 0; i < ( numframes - 1 ); i++ ) {
         if ( pintervals[i] > targettime )
             break;
-    }
+    } 
 
     r_apverts =
         (trivertx_t *)( (byte *)paliashdr + paliasgroup->frames[i].frame );
@@ -655,8 +655,7 @@ R_AliasDrawModel
 ================
 */
 void R_AliasDrawModel( alight_t *plighting ) {
-    finalvert_t finalverts[MAXALIASVERTS +
-                           ( ( CACHE_SIZE - 1 ) / sizeof( finalvert_t ) ) + 1];
+    finalvert_t finalverts[MAXALIASVERTS + ( ( CACHE_SIZE - 1 ) / sizeof( finalvert_t ) ) + 1];
     auxvert_t auxverts[MAXALIASVERTS];
 
     r_amodels_drawn++;

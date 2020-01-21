@@ -105,7 +105,7 @@ void ( *vid_menukeyfn )( int key );
 void VID_MenuKey( int key );
 
 typedef unsigned short PIXEL16;
-typedef unsigned long PIXEL24;
+typedef unsigned int PIXEL24;
 static PIXEL16 st2d_8to16table[256];
 static PIXEL24 st2d_8to24table[256];
 static int shiftmask_fl = 0;
@@ -208,20 +208,13 @@ void st2_fixup( XImage *framebuf, int x, int y, int width, int height ) {
             case 0:
                 do {
                     *dest-- = st2d_8to16table[*src--];
-                    case 7:
-                        *dest-- = st2d_8to16table[*src--];
-                    case 6:
-                        *dest-- = st2d_8to16table[*src--];
-                    case 5:
-                        *dest-- = st2d_8to16table[*src--];
-                    case 4:
-                        *dest-- = st2d_8to16table[*src--];
-                    case 3:
-                        *dest-- = st2d_8to16table[*src--];
-                    case 2:
-                        *dest-- = st2d_8to16table[*src--];
-                    case 1:
-                        *dest-- = st2d_8to16table[*src--];
+                    /* fallthrough */ case 7: *dest-- = st2d_8to16table[*src--];
+                    /* fallthrough */ case 6: *dest-- = st2d_8to16table[*src--];
+                    /* fallthrough */ case 5: *dest-- = st2d_8to16table[*src--];
+                    /* fallthrough */ case 4: *dest-- = st2d_8to16table[*src--];
+                    /* fallthrough */ case 3: *dest-- = st2d_8to16table[*src--];
+                    /* fallthrough */ case 2: *dest-- = st2d_8to16table[*src--];
+                    /* fallthrough */ case 1: *dest-- = st2d_8to16table[*src--];
                 } while ( --n > 0 );
         }
     }
@@ -239,9 +232,7 @@ void st3_fixup( XImage *framebuf, int x, int y, int width, int height ) {
     if ( !framebuf || !framebuf->data )
 	return;
 
-    //return;
-
-    /*for ( yi = y; yi < ( y + height ) - 1; yi++ ) {
+    for ( yi = y; yi < ( y + height ) - 1; yi++ ) {
         src = (unsigned char *)&framebuf->data[yi * framebuf->bytes_per_line];
 
         // Duff's Device
@@ -253,31 +244,17 @@ void st3_fixup( XImage *framebuf, int x, int y, int width, int height ) {
         switch ( count % 8 ) {
             case 0:
                 do {
-                    *dest-- = st2d_8to24table[*src--];
-                    case 7:
-                        *dest-- = st2d_8to24table[*src--];
-                    case 6:
-                        *dest-- = st2d_8to24table[*src--];
-                    case 5:
-                        *dest-- = st2d_8to24table[*src--];
-                    case 4:
-                        *dest-- = st2d_8to24table[*src--];
-                    case 3:
-                        *dest-- = st2d_8to24table[*src--];
-                    case 2:
-                        *dest-- = st2d_8to24table[*src--];
-                    case 1:
-                        *dest-- = st2d_8to24table[*src--];
+                   			*dest-- = st2d_8to24table[*src--];
+                    /* fallthrough */ case 7: *dest-- = st2d_8to24table[*src--];
+                    /* fallthrough */ case 6: *dest-- = st2d_8to24table[*src--];
+                    /* fallthrough */ case 5: *dest-- = st2d_8to24table[*src--];
+                    /* fallthrough */ case 4: *dest-- = st2d_8to24table[*src--];
+                    /* fallthrough */ case 3: *dest-- = st2d_8to24table[*src--];
+                    /* fallthrough */ case 2: *dest-- = st2d_8to24table[*src--];
+                    /* fallthrough */ case 1: *dest-- = st2d_8to24table[*src--];
                 } while ( --n > 0 );
         }
-    }*/
-    	for (yi = y ; yi < y + height - 1; yi++)
-	{
-		src = &framebuf->data[yi*framebuf->bytes_per_line];
-		dest = (PIXEL24 *)src;
-		for (xi = (x + width - 1) ; xi >= x ; xi--)
-			dest[xi] = st2d_8to24table[src[xi]];
-	}
+    }
 }
 
 // ========================================================================
