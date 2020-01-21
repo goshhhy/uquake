@@ -17,41 +17,16 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
-//
-// nonintel.c: code for non-Intel processors only
-//
+#include "../quakedef.h"
 
-#include "quakedef.h"
-#include "r_soft/r_local.h"
-#include "draw/d_local.h"
+#include "net_loop.h"
 
-#if !id386
+net_driver_t net_drivers[MAX_NET_DRIVERS] = {
+    {"Loopback", false, Loop_Init, Loop_Listen, Loop_SearchForHosts,
+     Loop_Connect, Loop_CheckNewConnections, Loop_GetMessage, Loop_SendMessage,
+     Loop_SendUnreliableMessage, Loop_CanSendMessage,
+     Loop_CanSendUnreliableMessage, Loop_Close, Loop_Shutdown}};
+int net_numdrivers = 1;
 
-/*
-================
-R_Surf8Patch
-================
-*/
-void R_Surf8Patch() {
-    // we only patch code on Intel
-}
-
-/*
-================
-R_Surf16Patch
-================
-*/
-void R_Surf16Patch() {
-    // we only patch code on Intel
-}
-
-/*
-================
-R_SurfacePatch
-================
-*/
-void R_SurfacePatch( void ) {
-    // we only patch code on Intel
-}
-
-#endif  // !id386
+net_landriver_t net_landrivers[MAX_NET_DRIVERS];
+int net_numlandrivers = 0;

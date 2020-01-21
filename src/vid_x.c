@@ -38,7 +38,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <X11/extensions/XShm.h>
 
 #include "quakedef.h"
-#include "d_local.h"
+#include "draw/d_local.h"
 
 cvar_t _windowed_mouse = {"_windowed_mouse", "0", true};
 cvar_t m_filter = {"m_filter", "0", true};
@@ -184,7 +184,7 @@ PIXEL24 xlib_rgb24( int r, int g, int b ) {
 }
 
 void st2_fixup( XImage *framebuf, int x, int y, int width, int height ) {
-    int xi, yi;
+    int yi;
     unsigned char *src;
     PIXEL16 *dest;
     register int count, n;
@@ -192,8 +192,11 @@ void st2_fixup( XImage *framebuf, int x, int y, int width, int height ) {
     if ( ( x < 0 ) || ( y < 0 ) )
         return;
 
+    if ( !framebuf || !framebuf->data )
+	return;
+
     for ( yi = y; yi < ( y + height ); yi++ ) {
-        src = &framebuf->data[yi * framebuf->bytes_per_line];
+        src = (unsigned char *)&framebuf->data[yi * framebuf->bytes_per_line];
 
         // Duff's Device
         count = width;
@@ -221,10 +224,6 @@ void st2_fixup( XImage *framebuf, int x, int y, int width, int height ) {
                         *dest-- = st2d_8to16table[*src--];
                 } while ( --n > 0 );
         }
-
-        //		for(xi = (x+width-1); xi >= x; xi--) {
-        //			dest[xi] = st2d_8to16table[src[xi]];
-        //		}
     }
 }
 
@@ -237,8 +236,13 @@ void st3_fixup( XImage *framebuf, int x, int y, int width, int height ) {
     if ( ( x < 0 ) || ( y < 0 ) )
         return;
 
-    for ( yi = y; yi < ( y + height ); yi++ ) {
-        src = &framebuf->data[yi * framebuf->bytes_per_line];
+    if ( !framebuf || !framebuf->data )
+	return;
+
+    //return;
+
+    /*for ( yi = y; yi < ( y + height ) - 1; yi++ ) {
+        src = (unsigned char *)&framebuf->data[yi * framebuf->bytes_per_line];
 
         // Duff's Device
         count = width;
@@ -266,11 +270,14 @@ void st3_fixup( XImage *framebuf, int x, int y, int width, int height ) {
                         *dest-- = st2d_8to24table[*src--];
                 } while ( --n > 0 );
         }
-
-        //		for(xi = (x+width-1); xi >= x; xi--) {
-        //			dest[xi] = st2d_8to16table[src[xi]];
-        //		}
-    }
+    }*/
+    	for (yi = y ; yi < y + height - 1; yi++)
+	{
+		src = &framebuf->data[yi*framebuf->bytes_per_line];
+		dest = (PIXEL24 *)src;
+		for (xi = (x + width - 1) ; xi >= x ; xi--)
+			dest[xi] = st2d_8to24table[src[xi]];
+	}
 }
 
 // ========================================================================
@@ -634,13 +641,15 @@ void VID_Init( unsigned char *palette ) {
 
     current_framebuffer = 0;
     vid.rowbytes = x_framebuffer[0]->bytes_per_line;
-    vid.buffer = x_framebuffer[0]->data;
+    vid.buffer = (pixel_t*)x_framebuffer[0]->data;
     vid.direct = 0;
-    vid.conbuffer = x_framebuffer[0]->data;
+    vid.conbuffer = (pixel_t*)x_framebuffer[0]->data;
     vid.conrowbytes = vid.rowbytes;
     vid.conwidth = vid.width;
     vid.conheight = vid.height;
     vid.aspect = ( (float)vid.height / (float)vid.width ) * ( 320.0 / 240.0 );
+
+    printf("rowbytes is %u\n", vid.rowbytes);
 
     //	XSynchronize(x_disp, False);
 }
@@ -989,8 +998,6 @@ void GetEvent( void ) {
 // flushes the given rectangles from the view buffer to the screen
 
 void VID_Update( vrect_t *rects ) {
-    vrect_t full;
-
     // if the window changes dimension, skip this frame
 
     if ( config_notify ) {
@@ -1003,7 +1010,7 @@ void VID_Update( vrect_t *rects ) {
         else
             ResetFrameBuffer();
         vid.rowbytes = x_framebuffer[0]->bytes_per_line;
-        vid.buffer = x_framebuffer[current_framebuffer]->data;
+        vid.buffer = (pixel_t*)x_framebuffer[current_framebuffer]->data;
         vid.conbuffer = vid.buffer;
         vid.conwidth = vid.width;
         vid.conheight = vid.height;
@@ -1039,7 +1046,7 @@ void VID_Update( vrect_t *rects ) {
             rects = rects->pnext;
         }
         current_framebuffer = !current_framebuffer;
-        vid.buffer = x_framebuffer[current_framebuffer]->data;
+        vid.buffer = (pixel_t*)x_framebuffer[current_framebuffer]->data;
         vid.conbuffer = vid.buffer;
         XSync( x_disp, False );
     } else {

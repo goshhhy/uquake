@@ -17,41 +17,22 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
-//
-// nonintel.c: code for non-Intel processors only
-//
+// r_vars.c: global refresh variables
 
-#include "quakedef.h"
-#include "r_soft/r_local.h"
-#include "draw/d_local.h"
+#include "../quakedef.h"
 
 #if !id386
 
-/*
-================
-R_Surf8Patch
-================
-*/
-void R_Surf8Patch() {
-    // we only patch code on Intel
-}
+// all global and static refresh variables are collected in a contiguous block
+// to avoid cache conflicts.
 
-/*
-================
-R_Surf16Patch
-================
-*/
-void R_Surf16Patch() {
-    // we only patch code on Intel
-}
+//-------------------------------------------------------
+// global refresh variables
+//-------------------------------------------------------
 
-/*
-================
-R_SurfacePatch
-================
-*/
-void R_SurfacePatch( void ) {
-    // we only patch code on Intel
-}
+// FIXME: make into one big structure, like cl or sv
+// FIXME: do separately for refresh engine and driver
+
+int r_bmodelactive;
 
 #endif  // !id386

@@ -229,7 +229,7 @@ typedef struct {
 #include "draw.h"
 #include "cvar.h"
 #include "screen.h"
-#include "net.h"
+#include "net/net.h"
 #include "protocol.h"
 #include "cmd.h"
 #include "sbar.h"
@@ -243,7 +243,7 @@ typedef struct {
 #include "gl_model.h"
 #else
 #include "model.h"
-#include "d_iface.h"
+#include "draw/d_iface.h"
 #endif
 
 #include "input.h"

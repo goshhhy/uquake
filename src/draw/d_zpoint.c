@@ -17,41 +17,27 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
-//
-// nonintel.c: code for non-Intel processors only
-//
+// d_zpoint.c: software driver module for drawing z-buffered points
 
-#include "quakedef.h"
-#include "r_soft/r_local.h"
-#include "draw/d_local.h"
-
-#if !id386
+#include "../quakedef.h"
+#include "d_local.h"
 
 /*
-================
-R_Surf8Patch
-================
+=====================
+D_DrawZPoint
+=====================
 */
-void R_Surf8Patch() {
-    // we only patch code on Intel
-}
+void D_DrawZPoint( void ) {
+    byte *pdest;
+    short *pz;
+    int izi;
 
-/*
-================
-R_Surf16Patch
-================
-*/
-void R_Surf16Patch() {
-    // we only patch code on Intel
-}
+    pz = d_pzbuffer + ( d_zwidth * r_zpointdesc.v ) + r_zpointdesc.u;
+    pdest = d_viewbuffer + d_scantable[r_zpointdesc.v] + r_zpointdesc.u;
+    izi = (int)( r_zpointdesc.zi * 0x8000 );
 
-/*
-================
-R_SurfacePatch
-================
-*/
-void R_SurfacePatch( void ) {
-    // we only patch code on Intel
+    if ( *pz <= izi ) {
+        *pz = izi;
+        *pdest = r_zpointdesc.color;
+    }
 }
-
-#endif  // !id386

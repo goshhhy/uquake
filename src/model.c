@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // on the same machine.
 
 #include "quakedef.h"
-#include "r_local.h"
+#include "r_soft/r_local.h"
 
 model_t *loadmodel;
 char loadname[32];  // for hunk tags
