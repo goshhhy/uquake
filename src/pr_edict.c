@@ -24,6 +24,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 dprograms_t *progs;
 dfunction_t *pr_functions;
 char *pr_strings;
+int pr_stringssize;
 ddef_t *pr_fielddefs;
 ddef_t *pr_globaldefs;
 dstatement_t *pr_statements;
@@ -34,13 +35,13 @@ int pr_edict_size;  // in bytes
 unsigned short pr_crc;
 
 int type_size[8] = {1,
-                    sizeof( string_t ) / 4,
+                    1,
                     1,
                     3,
                     1,
                     1,
-                    sizeof( func_t ) / 4,
-                    sizeof( void * ) / 4};
+                    1,
+                    1};
 
 ddef_t *ED_FieldAtOfs( int ofs );
 qboolean ED_ParseEpair( void *base, ddef_t *key, char *s );
@@ -912,7 +913,7 @@ PR_LoadProgs
 ===============
 */
 void PR_LoadProgs( void ) {
-    int i;
+    unsigned int i;
 
     // flush the non-C variable lookup cache
     for ( i = 0; i < GEFV_CACHESIZE; i++ ) gefvCache[i].field[0] = 0;
@@ -941,6 +942,9 @@ void PR_LoadProgs( void ) {
 
     pr_functions = (dfunction_t *)( (byte *)progs + progs->ofs_functions );
     pr_strings = (char *)progs + progs->ofs_strings;
+    pr_stringssize = progs->numstrings;
+    PR_InitStringTable();
+
     pr_globaldefs = (ddef_t *)( (byte *)progs + progs->ofs_globaldefs );
     pr_fielddefs = (ddef_t *)( (byte *)progs + progs->ofs_fielddefs );
     pr_statements = (dstatement_t *)( (byte *)progs + progs->ofs_statements );
@@ -948,8 +952,7 @@ void PR_LoadProgs( void ) {
     pr_global_struct = (globalvars_t *)( (byte *)progs + progs->ofs_globals );
     pr_globals = (float *)pr_global_struct;
 
-    pr_edict_size =
-        progs->entityfields * 4 + sizeof( edict_t ) - sizeof( entvars_t );
+    pr_edict_size = progs->entityfields * 4 + sizeof( edict_t ) - sizeof( entvars_t );
 
     // byte swap the lumps
     for ( i = 0; i < progs->numstatements; i++ ) {

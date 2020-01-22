@@ -130,3 +130,7 @@ void ED_PrintEdicts( void );
 void ED_PrintNum( int ent );
 
 eval_t *GetEdictFieldValue( edict_t *ed, char *field );
+
+void PR_InitStringTable(void);
+const char *PR_GetString(int num);
+int PR_SetString(const char *s);

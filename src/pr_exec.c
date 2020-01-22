@@ -40,7 +40,6 @@ int localstack_used;
 qboolean pr_trace;
 dfunction_t *pr_xfunction;
 int pr_xstatement;
-
 int pr_argc;
 
 char *pr_opnames[] = {
@@ -92,6 +91,56 @@ char *PR_GlobalString( int ofs );
 char *PR_GlobalStringNoContents( int ofs );
 
 //=============================================================================
+
+extern int pr_stringssize;
+#define PR_STRTBL_CHUNK 256
+static const char **pr_strtbl = NULL;
+static int pr_strtbl_size;
+static int num_prstr;
+
+void PR_InitStringTable(void) {
+    if (pr_strtbl) {
+        Z_Free(pr_strtbl);
+	    pr_strtbl = NULL;
+    }
+
+    pr_strtbl_size = 0;
+    num_prstr = 0;
+}
+
+const char * PR_GetString(int num) {
+    const char *s = "";
+
+    if (num >= 0 && num < pr_stringssize - 1)
+	    s = pr_strings + num;
+    else if (num < 0 && num >= -num_prstr)
+	    s = pr_strtbl[-num - 1];
+    else
+	    Host_Error("%s: invalid string offset %d (%d to %d valid)\n", __func__, num, -num_prstr, pr_stringssize - 2);
+
+    return s;
+}
+
+int PR_SetString(const char *s) {
+    int i;
+
+    if (s - pr_strings < 0 || s - pr_strings > pr_stringssize - 2) {
+        for (i = 0; i < num_prstr; i++)
+            if (pr_strtbl[i] == s)
+                break;
+        if (i < num_prstr)
+            return -i - 1;
+        if (num_prstr == pr_strtbl_size) {
+            pr_strtbl_size += PR_STRTBL_CHUNK;
+            pr_strtbl = Z_Realloc(pr_strtbl, pr_strtbl_size * sizeof(char *));
+	    }
+        pr_strtbl[num_prstr] = s;
+        num_prstr++;
+        return -num_prstr;
+    }
+    return (int)(s - pr_strings);
+}
+
 
 /*
 =================
@@ -427,7 +476,7 @@ void PR_ExecuteProgram( func_t fnum ) {
                 break;
             case OP_EQ_S:
                 c->_float =
-                    !strcmp( pr_strings + a->string, pr_strings + b->string );
+                    !strcmp( PR_GetString(a->string), PR_GetString(b->string) );
                 break;
             case OP_EQ_E:
                 c->_float = a->_int == b->_int;
@@ -446,7 +495,7 @@ void PR_ExecuteProgram( func_t fnum ) {
                 break;
             case OP_NE_S:
                 c->_float =
-                    strcmp( pr_strings + a->string, pr_strings + b->string );
+                    strcmp( PR_GetString(a->string), PR_GetString(b->string) );
                 break;
             case OP_NE_E:
                 c->_float = a->_int != b->_int;

@@ -676,15 +676,10 @@ void R_AliasDrawModel( alight_t *plighting ) {
     if ( !currententity->colormap )
         Sys_Error( "R_AliasDrawModel: !currententity->colormap" );
 
-    r_affinetridesc.drawtype =
-        ( currententity->trivial_accept == 3 ) && r_recursiveaffinetriangles;
+    r_affinetridesc.drawtype = ( currententity->trivial_accept == 3 ) && r_recursiveaffinetriangles;
 
     if ( r_affinetridesc.drawtype ) {
         D_PolysetUpdateTables();  // FIXME: precalc...
-    } else {
-#if id386
-        D_Aff8Patch( currententity->colormap );
-#endif
     }
 
     acolormap = currententity->colormap;
