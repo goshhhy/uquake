@@ -182,22 +182,6 @@ SYSTEM IO
 ===============================================================================
 */
 
-void Sys_MakeCodeWriteable( unsigned long startaddr, unsigned long length ) {
-    int r;
-    unsigned long addr;
-    int psize = getpagesize();
-
-    addr = ( startaddr & ~( psize - 1 ) ) - psize;
-
-    //	fprintf(stderr, "writable code %lx(%lx)-%lx, length=%lx\n", startaddr,
-    //			addr, startaddr+length, length);
-
-    r = mprotect( (char *)addr, length + startaddr - addr + psize, 7 );
-
-    if ( r < 0 )
-        Sys_Error( "Protection change failed\n" );
-}
-
 void Sys_Error( char *error, ... ) {
     va_list argptr;
 
