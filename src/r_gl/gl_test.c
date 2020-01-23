@@ -112,25 +112,6 @@ void DrawPuff( puff_t *p ) {
 
     glColor3f( 1, 0, 0 );
 
-#if 0
-	glBegin (GL_LINES);
-	glVertex3fv (p->origin);
-	glVertex3f (p->origin[0] + p->length*p->reflect[0],
-		p->origin[1] + p->length*p->reflect[1],
-		p->origin[2] + p->length*p->reflect[2]);
-
-	glVertex3fv (pts[0][0]);
-	glVertex3fv (pts[1][0]);
-
-	glVertex3fv (pts[0][1]);
-	glVertex3fv (pts[1][1]);
-
-	glVertex3fv (pts[0][2]);
-	glVertex3fv (pts[1][2]);
-
-	glEnd ();
-#endif
-
     glBegin( GL_QUADS );
     for ( i = 0; i < 3; i++ ) {
         j = ( i + 1 ) % 3;

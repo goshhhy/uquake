@@ -527,34 +527,13 @@ void D_PolysetCalcGradients( int skinwidth ) {
     r_zistepy =
         (int)( ( t1 * p00_minus_p20 - t0 * p10_minus_p20 ) * ystepdenominv );
 
-#if id386
-    a_sstepxfrac = r_sstepx << 16;
-    a_tstepxfrac = r_tstepx << 16;
-#else
     a_sstepxfrac = r_sstepx & 0xFFFF;
     a_tstepxfrac = r_tstepx & 0xFFFF;
-#endif
 
     a_ststepxwhole = skinwidth * ( r_tstepx >> 16 ) + ( r_sstepx >> 16 );
 }
 
 #endif  // !id386
-
-#if 0
-byte gelmap[256];
-void InitGel (byte *palette)
-{
-	int		i;
-	int		r;
-
-	for (i=0 ; i<256 ; i++)
-	{
-//		r = (palette[i*3]>>4);
-		r = (palette[i*3] + palette[i*3+1] + palette[i*3+2])/(16*3);
-		gelmap[i] = /* 64 */ 0 + r;
-	}
-}
-#endif
 
 #if !id386
 
@@ -959,77 +938,3 @@ void D_PolysetSetEdgeTable( void ) {
 
     pedgetable = &edgetables[edgetableindex];
 }
-
-#if 0
-
-void D_PolysetRecursiveDrawLine (int *lp1, int *lp2)
-{
-	int		d;
-	int		new[6];
-	int 	ofs;
-	
-	d = lp2[0] - lp1[0];
-	if (d < -1 || d > 1)
-		goto split;
-	d = lp2[1] - lp1[1];
-	if (d < -1 || d > 1)
-		goto split;
-
-	return;	// line is completed
-
-split:
-// split this edge
-	new[0] = (lp1[0] + lp2[0]) >> 1;
-	new[1] = (lp1[1] + lp2[1]) >> 1;
-	new[5] = (lp1[5] + lp2[5]) >> 1;
-	new[2] = (lp1[2] + lp2[2]) >> 1;
-	new[3] = (lp1[3] + lp2[3]) >> 1;
-	new[4] = (lp1[4] + lp2[4]) >> 1;
-
-// draw the point
-	ofs = d_scantable[new[1]] + new[0];
-	if (new[5] > d_pzbuffer[ofs])
-	{
-		int		pix;
-		
-		d_pzbuffer[ofs] = new[5];
-		pix = skintable[new[3]>>16][new[2]>>16];
-//		pix = ((byte *)acolormap)[pix + (new[4] & 0xFF00)];
-		d_viewbuffer[ofs] = pix;
-	}
-
-// recursively continue
-	D_PolysetRecursiveDrawLine (lp1, new);
-	D_PolysetRecursiveDrawLine (new, lp2);
-}
-
-void D_PolysetRecursiveTriangle2 (int *lp1, int *lp2, int *lp3)
-{
-	int		d;
-	int		new[4];
-	
-	d = lp2[0] - lp1[0];
-	if (d < -1 || d > 1)
-		goto split;
-	d = lp2[1] - lp1[1];
-	if (d < -1 || d > 1)
-		goto split;
-	return;
-
-split:
-// split this edge
-	new[0] = (lp1[0] + lp2[0]) >> 1;
-	new[1] = (lp1[1] + lp2[1]) >> 1;
-	new[5] = (lp1[5] + lp2[5]) >> 1;
-	new[2] = (lp1[2] + lp2[2]) >> 1;
-	new[3] = (lp1[3] + lp2[3]) >> 1;
-	new[4] = (lp1[4] + lp2[4]) >> 1;
-
-	D_PolysetRecursiveDrawLine (new, lp3);
-
-// recursively continue
-	D_PolysetRecursiveTriangle (lp1, new, lp3);
-	D_PolysetRecursiveTriangle (new, lp2, lp3);
-}
-
-#endif

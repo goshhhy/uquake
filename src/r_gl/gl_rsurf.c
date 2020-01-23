@@ -275,104 +275,6 @@ void GL_EnableMultitexture( void ) {
     }
 }
 
-#if 0
-/*
-================
-R_DrawSequentialPoly
-
-Systems that have fast state and texture changes can
-just do everything as it passes with no need to sort
-================
-*/
-void R_DrawSequentialPoly (msurface_t *s)
-{
-	glpoly_t	*p;
-	float		*v;
-	int			i;
-	texture_t	*t;
-
-	//
-	// normal lightmaped poly
-	//
-	if (! (s->flags & (SURF_DRAWSKY|SURF_DRAWTURB|SURF_UNDERWATER) ) )
-	{
-		p = s->polys;
-
-		t = R_TextureAnimation (s->texinfo->texture);
-		GL_Bind (t->gl_texturenum);
-		glBegin (GL_POLYGON);
-		v = p->verts[0];
-		for (i=0 ; i<p->numverts ; i++, v+= VERTEXSIZE)
-		{
-			glTexCoord2f (v[3], v[4]);
-			glVertex3fv (v);
-		}
-		glEnd ();
-
-		GL_Bind (lightmap_textures + s->lightmaptexturenum);
-		glEnable (GL_BLEND);
-		glBegin (GL_POLYGON);
-		v = p->verts[0];
-		for (i=0 ; i<p->numverts ; i++, v+= VERTEXSIZE)
-		{
-			glTexCoord2f (v[5], v[6]);
-			glVertex3fv (v);
-		}
-		glEnd ();
-
-		glDisable (GL_BLEND);
-
-		return;
-	}
-
-	//
-	// subdivided water surface warp
-	//
-	if (s->flags & SURF_DRAWTURB)
-	{
-		GL_Bind (s->texinfo->texture->gl_texturenum);
-		EmitWaterPolys (s);
-		return;
-	}
-
-	//
-	// subdivided sky warp
-	//
-	if (s->flags & SURF_DRAWSKY)
-	{
-		GL_Bind (solidskytexture);
-		speedscale = realtime*8;
-		speedscale -= (int)speedscale;
-
-		EmitSkyPolys (s);
-
-		glEnable (GL_BLEND);
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		GL_Bind (alphaskytexture);
-		speedscale = realtime*16;
-		speedscale -= (int)speedscale;
-		EmitSkyPolys (s);
-		if (gl_lightmap_format == GL_LUMINANCE)
-			glBlendFunc (GL_ZERO, GL_ONE_MINUS_SRC_COLOR);
-
-		glDisable (GL_BLEND);
-	}
-
-	//
-	// underwater warped with lightmap
-	//
-	p = s->polys;
-
-	t = R_TextureAnimation (s->texinfo->texture);
-	GL_Bind (t->gl_texturenum);
-	DrawGLWaterPoly (p);
-
-	GL_Bind (lightmap_textures + s->lightmaptexturenum);
-	glEnable (GL_BLEND);
-	DrawGLWaterPolyLightmap (p);
-	glDisable (GL_BLEND);
-}
-#else
 /*
 ================
 R_DrawSequentialPoly
@@ -549,7 +451,6 @@ void R_DrawSequentialPoly( msurface_t *s ) {
         glDisable( GL_BLEND );
     }
 }
-#endif
 
 /*
 ================
@@ -848,56 +749,6 @@ void R_MirrorChain( msurface_t *s ) {
     mirror_plane = s->plane;
 }
 
-#if 0
-/*
-================
-R_DrawWaterSurfaces
-================
-*/
-void R_DrawWaterSurfaces (void)
-{
-	int			i;
-	msurface_t	*s;
-	texture_t	*t;
-
-	if (r_wateralpha.value == 1.0)
-		return;
-
-	//
-	// go back to the world matrix
-	//
-    glLoadMatrixf (r_world_matrix);
-
-	glEnable (GL_BLEND);
-	glColor4f (1,1,1,r_wateralpha.value);
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
-
-	for (i=0 ; i<cl.worldmodel->numtextures ; i++)
-	{
-		t = cl.worldmodel->textures[i];
-		if (!t)
-			continue;
-		s = t->texturechain;
-		if (!s)
-			continue;
-		if ( !(s->flags & SURF_DRAWTURB) )
-			continue;
-
-		// set modulate mode explicitly
-		GL_Bind (t->gl_texturenum);
-
-		for ( ; s ; s=s->texturechain)
-			R_RenderBrushPoly (s);
-
-		t->texturechain = NULL;
-	}
-
-	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-
-	glColor4f (1,1,1,1);
-	glDisable (GL_BLEND);
-}
-#else
 /*
 ================
 R_DrawWaterSurfaces
@@ -961,8 +812,6 @@ void R_DrawWaterSurfaces( void ) {
         glDisable( GL_BLEND );
     }
 }
-
-#endif
 
 /*
 ================

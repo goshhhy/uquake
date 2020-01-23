@@ -257,7 +257,6 @@ void R_NewMap( void ) {
         // surface 0 doesn't really exist; it's just a dummy because index 0
         // is used to indicate no edge attached to surface
         surfaces--;
-        R_SurfacePatch();
     } else {
         r_surfsonstack = true;
     }
@@ -814,7 +813,6 @@ void R_EdgeDrawing( void ) {
         // surface 0 doesn't really exist; it's just a dummy because index 0
         // is used to indicate no edge attached to surface
         surfaces--;
-        R_SurfacePatch();
     }
 
     R_BeginEdgeFrame();

@@ -1033,21 +1033,6 @@ void GetEvent( void ) {
 // flushes the given rectangles from the view buffer to the screen
 
 void VID_Update( vrect_t *rects ) {
-#if 0
-	static int count;
-	static long long s;
-	long long gethrtime();
-
-	if (count == 0)
-		s = gethrtime();
-
-	if (count++ == 50) {
-		count = 1;
-		printf("%lf frames/secs\n", 50.0/((double)(gethrtime()-s) / 1e9));
-		s = gethrtime();
-	}
-#endif
-
     // if the window changes dimension, skip this frame
 
     if ( config_notify ) {
@@ -1153,37 +1138,6 @@ void Sys_SendKeyEvents( void ) {
         }
     }
 }
-
-#if 0
-char *Sys_ConsoleInput (void)
-{
-
-	static char	text[256];
-	int		len;
-	fd_set  readfds;
-	int		ready;
-	struct timeval timeout;
-
-	timeout.tv_sec = 0;
-	timeout.tv_usec = 0;
-	FD_ZERO(&readfds);
-	FD_SET(0, &readfds);
-	ready = select(1, &readfds, 0, 0, &timeout);
-
-	if (ready>0)
-	{
-		len = read (0, text, sizeof(text));
-		if (len >= 1)
-		{
-			text[len-1] = 0;	// rip off the /n and terminate
-			return text;
-		}
-	}
-
-	return 0;
-	
-}
-#endif
 
 void IN_Init( void ) {
     Cvar_RegisterVariable( &m_filter );

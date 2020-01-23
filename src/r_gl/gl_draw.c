@@ -389,40 +389,9 @@ void Draw_Init( void ) {
     y = strlen( ver );
     for ( x = 0; x < y; x++ ) Draw_CharToConback( ver[x], dest + ( x << 3 ) );
 
-#if 0
-	conback->width = vid.conwidth;
-	conback->height = vid.conheight;
-
- 	// scale console to vid size
- 	dest = ncdata = Hunk_AllocName(vid.conwidth * vid.conheight, "conback");
- 
- 	for (y=0 ; y<vid.conheight ; y++, dest += vid.conwidth)
- 	{
- 		src = cb->data + cb->width * (y*cb->height/vid.conheight);
- 		if (vid.conwidth == cb->width)
- 			memcpy (dest, src, vid.conwidth);
- 		else
- 		{
- 			f = 0;
- 			fstep = cb->width*0x10000/vid.conwidth;
- 			for (x=0 ; x<vid.conwidth ; x+=4)
- 			{
- 				dest[x] = src[f>>16];
- 				f += fstep;
- 				dest[x+1] = src[f>>16];
- 				f += fstep;
- 				dest[x+2] = src[f>>16];
- 				f += fstep;
- 				dest[x+3] = src[f>>16];
- 				f += fstep;
- 			}
- 		}
- 	}
-#else
     conback->width = cb->width;
     conback->height = cb->height;
     ncdata = cb->data;
-#endif
 
     glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST );
     glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
@@ -958,18 +927,6 @@ void GL_Upload32( unsigned *data, int width, int height, qboolean mipmap,
 
     samples = alpha ? gl_alpha_format : gl_solid_format;
 
-#if 0
-	if (mipmap)
-		gluBuild2DMipmaps (GL_TEXTURE_2D, samples, width, height, GL_RGBA, GL_UNSIGNED_BYTE, trans);
-	else if (scaled_width == width && scaled_height == height)
-		glTexImage2D (GL_TEXTURE_2D, 0, samples, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, trans);
-	else
-	{
-		gluScaleImage (GL_RGBA, width, height, GL_UNSIGNED_BYTE, trans,
-			scaled_width, scaled_height, GL_UNSIGNED_BYTE, scaled);
-		glTexImage2D (GL_TEXTURE_2D, 0, samples, scaled_width, scaled_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, scaled);
-	}
-#else
     texels += scaled_width * scaled_height;
 
     if ( scaled_width == width && scaled_height == height ) {
@@ -1003,7 +960,6 @@ void GL_Upload32( unsigned *data, int width, int height, qboolean mipmap,
         }
     }
 done:;
-#endif
 
     if ( mipmap ) {
         glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, gl_filter_min );

@@ -870,9 +870,6 @@ void V_CalcRefdef( void ) {
     // fudge position around to keep amount of weapon visible
     // roughly equal with different FOV
 
-#if 0
-	if (cl.model_precache[cl.stats[STAT_WEAPON]] && strcmp (cl.model_precache[cl.stats[STAT_WEAPON]]->name,  "progs/v_shot2.mdl"))
-#endif
     if ( scr_viewsize.value == 110 )
         view->origin[2] += 1;
     else if ( scr_viewsize.value == 100 )

@@ -343,25 +343,6 @@ int matchmouse( int mouse, char *name ) {
     return mouse;
 }
 
-#if 0
-
-void vtswitch(int newconsole)
-{
-
-	int fd;
-	struct vt_stat x;
-
-// switch consoles and wait until reactivated
-	fd = open("/dev/console", O_RDONLY);
-	ioctl(fd, VT_GETSTATE, &x);
-	ioctl(fd, VT_ACTIVATE, newconsole);
-	ioctl(fd, VT_WAITACTIVE, x.v_active);
-	close(fd);
-
-}
-
-#endif
-
 void keyhandler( int scancode, int state ) {
     int sc;
 

@@ -108,12 +108,6 @@ void Sys_Printf( char *fmt, ... ) {
 void Sys_Quit( void ) {
     Host_Shutdown();
     fcntl( 0, F_SETFL, fcntl( 0, F_GETFL, 0 ) & ~FNDELAY );
-#if 0
-	if (registered.value)
-		printf("%s", end2);
-	else
-		printf("%s", end1);
-#endif
     fflush( stdout );
     exit( 0 );
 }

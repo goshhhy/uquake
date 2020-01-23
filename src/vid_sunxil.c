@@ -940,16 +940,6 @@ void GetEvent( void ) {
             if ( x_event.xclient.data.l[0] == aWMDelete )
                 Host_Quit_f();
             break;
-#if 0
-		case FocusIn:
-			printf("FocusIn...\n");
-			x_focus = true;
-			break;
-		case FocusOut:
-			printf("FocusOut...\n");
-			x_focus = false;
-			break;
-#endif
     }
 
     if ( old_windowed_mouse != _windowed_mouse.value ) {
