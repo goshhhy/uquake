@@ -63,11 +63,9 @@ void VID_UnlockBuffer( void );
 
 #define id386 0
 
-#if id386
-#define UNALIGNED_OK 1  // set to 0 if unaligned accesses are not supported
-#else
+#ifndef UNALIGNED_OK
 #define UNALIGNED_OK 0
-#endif
+#endif //UNALIGNED_OK
 
 // !!! if this is changed, it must be changed in d_ifacea.h too !!!
 #define CACHE_SIZE 32  // used to align key data structures

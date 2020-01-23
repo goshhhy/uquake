@@ -92,55 +92,21 @@ char *PR_GlobalStringNoContents( int ofs );
 
 //=============================================================================
 
-extern int pr_stringssize;
-#define PR_STRTBL_CHUNK 256
-static const char **pr_strtbl = NULL;
-static int pr_strtbl_size;
-static int num_prstr;
-
-void PR_InitStringTable(void) {
-    if (pr_strtbl) {
-        Z_Free(pr_strtbl);
-	    pr_strtbl = NULL;
-    }
-
-    pr_strtbl_size = 0;
-    num_prstr = 0;
+const char *PR_GetString (int num)
+{
+	if (num >= 0 && num < pr_stringssize) {
+		return pr_strings + num;
+	} else if (num < 0 && num >= -pr_numstrings)	{
+		if (!pr_strings[-1 - num]) {
+			Host_Error ("PR_GetString: attempt to get a non-existant string %d\n", num);
+			return "";
+		}
+		return pr_strings[-1 - num];
+	} else {
+		Host_Error("PR_GetString: invalid string offset %d\n", num);
+		return "";
+	}
 }
-
-const char * PR_GetString(int num) {
-    const char *s = "";
-
-    if (num >= 0 && num < pr_stringssize - 1)
-	    s = pr_strings + num;
-    else if (num < 0 && num >= -num_prstr)
-	    s = pr_strtbl[-num - 1];
-    else
-	    Host_Error("%s: invalid string offset %d (%d to %d valid)\n", __func__, num, -num_prstr, pr_stringssize - 2);
-
-    return s;
-}
-
-int PR_SetString(const char *s) {
-    int i;
-
-    if (s - pr_strings < 0 || s - pr_strings > pr_stringssize - 2) {
-        for (i = 0; i < num_prstr; i++)
-            if (pr_strtbl[i] == s)
-                break;
-        if (i < num_prstr)
-            return -i - 1;
-        if (num_prstr == pr_strtbl_size) {
-            pr_strtbl_size += PR_STRTBL_CHUNK;
-            pr_strtbl = Z_Realloc(pr_strtbl, pr_strtbl_size * sizeof(char *));
-	    }
-        pr_strtbl[num_prstr] = s;
-        num_prstr++;
-        return -num_prstr;
-    }
-    return (int)(s - pr_strings);
-}
-
 
 /*
 =================
@@ -285,7 +251,7 @@ int PR_EnterFunction( dfunction_t *f ) {
     c = f->locals;
     if ( localstack_used + c > LOCALSTACK_SIZE )
         PR_RunError( "PR_ExecuteProgram: locals stack overflow\n" );
-
+    
     for ( i = 0; i < c; i++ )
         localstack[localstack_used + i] =
             ( (int *)pr_globals )[f->parm_start + i];
@@ -457,7 +423,7 @@ void PR_ExecuteProgram( func_t fnum ) {
                 c->_float = !a->vector[0] && !a->vector[1] && !a->vector[2];
                 break;
             case OP_NOT_S:
-                c->_float = !a->string || !pr_strings[a->string];
+                c->_float = !a->string || !*PR_GetString(a->string);
                 break;
             case OP_NOT_FNC:
                 c->_float = !a->function;
