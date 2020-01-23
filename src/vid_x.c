@@ -109,8 +109,8 @@ typedef unsigned int PIXEL24;
 static PIXEL16 st2d_8to16table[256];
 static PIXEL24 st2d_8to24table[256];
 static int shiftmask_fl = 0;
-static long r_shift, g_shift, b_shift;
-static unsigned long r_mask, g_mask, b_mask;
+static int r_shift, g_shift, b_shift;
+static unsigned int r_mask, g_mask, b_mask;
 
 void shiftmask_init() {
     unsigned int x;
