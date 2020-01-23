@@ -900,6 +900,8 @@ void ED_LoadFromFile( char *data ) {
             continue;
         }
 
+        Con_Printf( "spawning:\n" );
+        ED_Print( ent );
         pr_global_struct->self = EDICT_TO_PROG( ent );
         PR_ExecuteProgram( func - pr_functions );
     }

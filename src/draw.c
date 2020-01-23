@@ -98,8 +98,6 @@ Draw_Init
 ===============
 */
 void Draw_Init( void ) {
-    int i;
-
     draw_chars = W_GetLumpName( "conchars" );
     draw_disc = W_GetLumpName( "disc" );
     draw_backtile = W_GetLumpName( "backtile" );
@@ -265,8 +263,8 @@ void Draw_Pic( int x, int y, qpic_t *pic ) {
     unsigned short *pusdest;
     int v, u;
 
-    if ( ( x < 0 ) || ( x + pic->width > vid.width ) || ( y < 0 ) ||
-         ( y + pic->height > vid.height ) ) {
+    if ( ( x < 0 ) || ( x + pic->width > (int)vid.width ) || ( y < 0 ) ||
+         ( y + pic->height > (int)vid.height ) ) {
         Sys_Error( "Draw_Pic: bad coordinates" );
     }
 
@@ -493,7 +491,7 @@ void Draw_ConsoleBackground( int lines ) {
     sprintf( ver, "%4.2f", VERSION );
 #endif
 
-    for ( x = 0; x < strlen( ver ); x++ )
+    for ( x = 0; x < (int)strlen( ver ); x++ )
         Draw_CharToConback( ver[x], dest + ( x << 3 ) );
 
     // draw the pic
@@ -508,7 +506,7 @@ void Draw_ConsoleBackground( int lines ) {
             else {
                 f = 0;
                 fstep = 320 * 0x10000 / vid.conwidth;
-                for ( x = 0; x < vid.conwidth; x += 4 ) {
+                for ( x = 0; x < (int)vid.conwidth; x += 4 ) {
                     dest[x] = src[f >> 16];
                     f += fstep;
                     dest[x + 1] = src[f >> 16];
@@ -530,7 +528,7 @@ void Draw_ConsoleBackground( int lines ) {
             src = conback->data + v * 320;
             f = 0;
             fstep = 320 * 0x10000 / vid.conwidth;
-            for ( x = 0; x < vid.conwidth; x += 4 ) {
+            for ( x = 0; x < (int)vid.conwidth; x += 4 ) {
                 pusdest[x] = d_8to16table[src[f >> 16]];
                 f += fstep;
                 pusdest[x + 1] = d_8to16table[src[f >> 16]];
@@ -737,13 +735,13 @@ void Draw_FadeScreen( void ) {
     S_ExtraUpdate();
     VID_LockBuffer();
 
-    for ( y = 0; y < vid.height; y++ ) {
+    for ( y = 0; y < (int)vid.height; y++ ) {
         int t;
 
         pbuf = (byte *)( vid.buffer + vid.rowbytes * y );
         t = ( y & 1 ) << 1;
 
-        for ( x = 0; x < vid.width; x++ ) {
+        for ( x = 0; x < (int)vid.width; x++ ) {
             if ( ( x & 3 ) != t )
                 pbuf[x] = 0;
         }

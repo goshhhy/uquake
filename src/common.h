@@ -61,7 +61,7 @@ void InsertLinkAfter( link_t *l, link_t *after );
 // ent = STRUCT_FROM_LINK(link,entity_t,order)
 // FIXME: remove this mess!
 #define STRUCT_FROM_LINK( l, t, m ) \
-    ( (t *)( (byte *)l - (int)&( ( (t *)0 )->m ) ) )
+    ( (t *)( (byte *)l - (long)&( ( (t *)0 )->m ) ) )
 
 //============================================================================
 

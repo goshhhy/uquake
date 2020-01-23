@@ -94,7 +94,7 @@ char *PR_GlobalStringNoContents( int ofs );
 
 const char *PR_GetString (int num)
 {
-    return pr_strings[num];
+    return pr_strings + num;
 	/*if (num >= 0 && num < pr_stringssize) {
 		return pr_strings + num;
 	} else if (num < 0 && num >= -pr_numstrings)	{

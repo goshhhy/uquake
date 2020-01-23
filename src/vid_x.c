@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "draw/d_local.h"
 
 cvar_t _windowed_mouse = {"_windowed_mouse", "0", true};
-cvar_t m_filter = {"m_filter", "0", true};
+cvar_t m_filter = {"m_filter", "0", true, false};
 float old_windowed_mouse;
 
 qboolean mouse_avail;
@@ -221,7 +221,7 @@ void st2_fixup( XImage *framebuf, int x, int y, int width, int height ) {
 }
 
 void st3_fixup( XImage *framebuf, int x, int y, int width, int height ) {
-    int xi, yi;
+    int yi;
     unsigned char *src;
     PIXEL24 *dest;
     register int count, n;
@@ -1035,14 +1035,6 @@ void VID_DitherOff( void ) {
     }
 }
 
-int Sys_OpenWindow( void ) { return 0; }
-
-void Sys_EraseWindow( int window ) {}
-
-void Sys_DrawCircle( int window, int x, int y, int r ) {}
-
-void Sys_DisplayWindow( int window ) {}
-
 void Sys_SendKeyEvents( void ) {
     // get events from x server
     if ( x_disp ) {
@@ -1056,10 +1048,11 @@ void Sys_SendKeyEvents( void ) {
 
 void D_BeginDirectRect( int x, int y, byte *pbitmap, int width, int height ) {
     // direct drawing of the "accessing disk" icon isn't supported under Linux
+    Con_Printf( "[vid_x] would begin directrect at %i %i size %i %i bmp @%x\n", x, y, width, height, pbitmap );
 }
 
 void D_EndDirectRect( int x, int y, int width, int height ) {
-    // direct drawing of the "accessing disk" icon isn't supported under Linux
+    Con_Printf( "[vid_x] would end directrect at %i %i size %i %i\n", x, y, width, height );
 }
 
 void IN_Init( void ) {
