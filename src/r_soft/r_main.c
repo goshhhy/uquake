@@ -608,10 +608,6 @@ void R_DrawViewModel( void ) {
 
     r_viewlighting.plightvec = lightvec;
 
-#ifdef QUAKE2
-    cl.light_level = r_viewlighting.ambientlight;
-#endif
-
     R_AliasDrawModel( &r_viewlighting );
 }
 

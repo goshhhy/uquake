@@ -94,7 +94,8 @@ char *PR_GlobalStringNoContents( int ofs );
 
 const char *PR_GetString (int num)
 {
-	if (num >= 0 && num < pr_stringssize) {
+    return pr_strings[num];
+	/*if (num >= 0 && num < pr_stringssize) {
 		return pr_strings + num;
 	} else if (num < 0 && num >= -pr_numstrings)	{
 		if (!pr_strings[-1 - num]) {
@@ -105,7 +106,7 @@ const char *PR_GetString (int num)
 	} else {
 		Host_Error("PR_GetString: invalid string offset %d\n", num);
 		return "";
-	}
+	}*/
 }
 
 /*
