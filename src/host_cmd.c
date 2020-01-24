@@ -1332,8 +1332,6 @@ Host_Startdemos_f
 void Host_Startdemos_f( void ) {
     int i, c;
 
-    cls.demonum = -1;
-    return;
 
     if ( cls.state == ca_dedicated ) {
         if ( !sv.active )
