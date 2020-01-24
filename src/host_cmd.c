@@ -1332,7 +1332,6 @@ Host_Startdemos_f
 void Host_Startdemos_f( void ) {
     int i, c;
 
-
     if ( cls.state == ca_dedicated ) {
         if ( !sv.active )
             Cbuf_AddText( "map start\n" );
@@ -1350,8 +1349,10 @@ void Host_Startdemos_f( void ) {
         strncpy( cls.demos[i - 1], Cmd_Argv( i ), sizeof( cls.demos[0] ) - 1 );
 
     if ( !sv.active && cls.demonum != -1 && !cls.demoplayback ) {
-        cls.demonum = 0;
-        CL_NextDemo();
+        cls.demonum = -1;
+        Cbuf_InsertText("menu_main\n");
+        return;
+        //CL_NextDemo();
     } else
         cls.demonum = -1;
 }
