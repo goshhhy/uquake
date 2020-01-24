@@ -72,25 +72,6 @@ char *pr_opnames[] = {
 char *PR_GlobalString( int ofs );
 char *PR_GlobalStringNoContents( int ofs );
 
-//=============================================================================
-
-const char *PR_GetString (int num)
-{
-    return pr_strings + num;
-	/*if (num >= 0 && num < pr_stringssize) {
-		return pr_strings + num;
-	} else if (num < 0 && num >= -pr_numstrings)	{
-		if (!pr_strings[-1 - num]) {
-			Host_Error ("PR_GetString: attempt to get a non-existant string %d\n", num);
-			return "";
-		}
-		return pr_strings[-1 - num];
-	} else {
-		Host_Error("PR_GetString: invalid string offset %d\n", num);
-		return "";
-	}*/
-}
-
 /*
 =================
 PR_PrintStatement
@@ -144,8 +125,8 @@ void PR_StackTrace( void ) {
         if ( !f ) {
             Con_Printf( "<NO FUNCTION>\n" );
         } else
-            Con_Printf( "%12s : %s\n", pr_strings + f->s_file,
-                        pr_strings + f->s_name );
+            Con_Printf( "%12s : %s\n", PR_GetString( f->s_file ),
+                        PR_GetString( f->s_name ) );
     }
 }
 
@@ -175,7 +156,7 @@ void PR_Profile_f( void ) {
         if ( best ) {
             if ( num < 10 )
                 Con_Printf( "%7i %s\n", best->profile,
-                            pr_strings + best->s_name );
+                            PR_GetString( best->s_name ) );
             num++;
             best->profile = 0;
         }

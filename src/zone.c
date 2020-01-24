@@ -128,8 +128,7 @@ void *Z_Malloc( int size ) {
  * Z_Realloc
  * ========================Realloc
  */
-void *
-Z_Realloc(const void *ptr, int size) {
+void *Z_Realloc(const void *ptr, int size) {
     memblock_t *block;
     int orig_size;
     void *ret;
