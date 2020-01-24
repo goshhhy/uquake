@@ -1030,10 +1030,18 @@ void Sys_SendKeyEvents( void ) {
 
 void D_BeginDirectRect( int x, int y, byte *pbitmap, int width, int height ) {
     // direct drawing of the "accessing disk" icon isn't supported under Linux
+
+    if (!vid.direct)
+	return;
+
     Con_Printf( "[vid_x] would begin directrect at %i %i size %i %i bmp @%x\n", x, y, width, height, pbitmap );
 }
 
 void D_EndDirectRect( int x, int y, int width, int height ) {
+
+    if (!vid.direct)
+	return;
+
     Con_Printf( "[vid_x] would end directrect at %i %i size %i %i\n", x, y, width, height );
 }
 
