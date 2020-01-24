@@ -247,7 +247,7 @@ void Draw_Pic( int x, int y, qpic_t *pic ) {
 
     if ( ( x < 0 ) || ( x + pic->width > (int)vid.width ) || ( y < 0 ) ||
          ( y + pic->height > (int)vid.height ) ) {
-        Sys_Error( "Draw_Pic: bad coordinates" );
+        Sys_Error( "Draw_Pic: bad coordinates %i.%i", x, y );
     }
 
     source = pic->data;
@@ -287,7 +287,7 @@ void Draw_TransPic( int x, int y, qpic_t *pic ) {
 
     if ( x < 0 || (unsigned)( x + pic->width ) > vid.width || y < 0 ||
          (unsigned)( y + pic->height ) > vid.height ) {
-        Sys_Error( "Draw_TransPic: bad coordinates" );
+        Sys_Printf( "Draw_TransPic: bad coordinates %i.%i", x, y  );
     }
 
     source = pic->data;

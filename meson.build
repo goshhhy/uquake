@@ -6,7 +6,38 @@ xshm = dependency('xext')
 cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required : false)
 
-uquake_sources = [  'src/cl_demo.c',
+use_networking = get_option('enable_networking')
+if use_networking == true
+    uquake_net_sources = [
+        'src/net/net_dgrm.c',
+        'src/net/net_loop.c',
+        'src/net/net_main.c',
+        'src/net/net_vcr.c',
+        'src/net/net_udp.c',
+        'src/net/net_bsd.c',
+    ]
+else
+    uquake_net_sources = [
+        'src/net/net_loop.c',
+        'src/net/net_main.c',
+        'src/net/net_vcr.c',
+        'src/net/net_none.c'
+    ]
+endif
+
+target_platform = get_option('target_platform')
+if target_platform == 'linux_x11'
+    uquake_platform_sources = [
+        'src/cd_linux.c',
+        'src/sys_linux.c',
+        'src/vid_x.c',
+        'src/snd_null.c'
+    ]
+else
+    error('target platform not supplied or unsupported')
+endif
+
+uquake_base_sources = [  'src/cl_demo.c',
                     'src/cl_input.c',
                     'src/cl_main.c',
                     'src/cl_parse.c',
@@ -36,12 +67,6 @@ uquake_sources = [  'src/cl_demo.c',
                     'src/menu.c',
                     'src/mathlib.c',
                     'src/model.c',
-                    'src/net/net_dgrm.c',
-                    'src/net/net_loop.c',
-                    'src/net/net_main.c',
-                    'src/net/net_vcr.c',
-                    'src/net/net_udp.c',
-                    'src/net/net_bsd.c',
                     'src/pr_cmds.c',
                     'src/pr_edict.c',
                     'src/pr_exec.c',
@@ -69,10 +94,6 @@ uquake_sources = [  'src/cl_demo.c',
                     'src/view.c',
                     'src/wad.c',
                     'src/world.c',
-                    'src/cd_linux.c',
-                    'src/sys_linux.c',
-                    'src/vid_x.c',
-                    'src/snd_null.c' ]
+                ]
 
-executable('uquake', uquake_sources, dependencies : [x11, xshm, m_dep], install : true)
-
+executable('uquake', [uquake_base_sources, uquake_net_sources, uquake_platform_sources], dependencies : [x11, xshm, m_dep], install : true)

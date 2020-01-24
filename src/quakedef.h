@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <setjmp.h>
+#include <stdint.h>
 
 #if defined( _WIN32 ) && !defined( WINDED )
 
