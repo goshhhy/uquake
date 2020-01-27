@@ -12,7 +12,6 @@ if use_networking == true
         'src/net/net_dgrm.c',
         'src/net/net_loop.c',
         'src/net/net_main.c',
-        'src/net/net_vcr.c',
         'src/net/net_udp.c',
         'src/net/net_bsd.c',
     ]
@@ -20,7 +19,6 @@ else
     uquake_net_sources = [
         'src/net/net_loop.c',
         'src/net/net_main.c',
-        'src/net/net_vcr.c',
         'src/net/net_none.c'
     ]
 endif

@@ -1355,19 +1355,24 @@ byte *COM_LoadFile( char *path, int usehunk ) {
     // extract the filename base name for hunk tag
     COM_FileBase( path, base );
 
-    if ( usehunk == 1 )
+    if ( usehunk == 1 ) {
         buf = Hunk_AllocName( len + 1, base );
-    else if ( usehunk == 2 )
+        Sys_Printf( "COM_LoadFile: \"%s\:%i via hunk\n", path, len + 1 );
+    } else if ( usehunk == 2 ) {
         buf = Hunk_TempAlloc( len + 1 );
-    else if ( usehunk == 0 )
+        Sys_Printf( "COM_LoadFile: \"%s\:%i via temp\n", path, len + 1 );
+    } else if ( usehunk == 0 ) {
         buf = Z_Malloc( len + 1 );
-    else if ( usehunk == 3 )
+        Sys_Printf( "COM_LoadFile: \"%s\:%i via zone\n", path, len + 1 );
+    } else if ( usehunk == 3 ) {
         buf = Cache_Alloc( loadcache, len + 1, base );
-    else if ( usehunk == 4 ) {
+        Sys_Printf( "COM_LoadFile: \"%s\:%i via cache\n", path, len + 1 );
+    } else if ( usehunk == 4 ) {
         if ( len + 1 > loadsize )
             buf = Hunk_TempAlloc( len + 1 );
         else
             buf = loadbuf;
+         Sys_Printf( "COM_LoadFile: \"%s\:%i via stack\n", path, len + 1 );
     } else
         Sys_Error( "COM_LoadFile: bad usehunk" );
 

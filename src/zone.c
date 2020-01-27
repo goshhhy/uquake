@@ -403,7 +403,7 @@ void *Hunk_AllocName( int size, char *name ) {
     if ( size < 0 )
         Sys_Error( "Hunk_Alloc: bad size: %i", size );
 
-    size = sizeof( hunk_t ) + ( ( size + 15 ) & ~15 );
+    size = sizeof( hunk_t ) + ( ( size + 0 ) & ~0 );
 
     if ( hunk_size - hunk_low_used - hunk_high_used < size )
         Sys_Error( "Hunk_Alloc: failed on %i bytes", size );
@@ -419,7 +419,7 @@ void *Hunk_AllocName( int size, char *name ) {
     h->sentinal = HUNK_SENTINAL;
     Q_strncpy( h->name, name, 8 );
 
-    Con_Printf( "hunk allocated: %i:\"%s\"\n", size, name );
+    Con_Printf( "%i hunk alloc for \"%s\"\n", size, name );
 
     return (void *)( h + 1 );
 }
@@ -497,7 +497,7 @@ void *Hunk_HighAllocName( int size, char *name ) {
     h->sentinal = HUNK_SENTINAL;
     Q_strncpy( h->name, name, 8 );
 
-    Con_Printf( "hunk allocated high: %i:\"%s\"\n", size, name );
+    Con_Printf( "%i hunk allochigh for \"%s\"\n", size, name );
 
     return (void *)( h + 1 );
 }
@@ -653,8 +653,10 @@ cache_system_t *Cache_TryAlloc( int size, qboolean nobottom ) {
     // is the cache completely empty?
 
     if ( !nobottom && cache_head.prev == &cache_head ) {
-        if ( hunk_size - hunk_high_used - hunk_low_used < size )
-            Sys_Error( "Cache_TryAlloc: %i is greater then free hunk", size );
+        if ( hunk_size - hunk_high_used - hunk_low_used < size ) {
+            Con_Printf( "Cache_TryAlloc: %i is greater then free hunk", size );
+            return NULL;
+        }
 
         new = (cache_system_t *)( hunk_base + hunk_low_used );
         memset( new, 0, sizeof( *new ) );
@@ -878,5 +880,6 @@ void Memory_Init( void *buf, int size ) {
                 "Memory_Init: you must specify a size in KB after -zone" );
     }
     mainzone = Hunk_AllocName( zonesize, "zone" );
+    Con_Printf( "memory init with size %i\n", size );
     Z_ClearZone( mainzone, zonesize );
 }

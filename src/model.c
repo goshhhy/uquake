@@ -31,7 +31,9 @@ int mod_numknown;
 Mod_Init
 ===============
 */
-void Mod_Init( void ) { memset( mod_novis, 0xff, sizeof( mod_novis ) ); }
+void Mod_Init( void ) { 
+    memset( mod_novis, 0xff, sizeof( mod_novis ) ); 
+}
 
 /*
 ===============

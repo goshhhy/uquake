@@ -14,7 +14,7 @@
 
 #define DS_SPAN_LIST_END -128
 
-#define SURFCACHE_SIZE_AT_320X200 600 * 1024
+#define SURFCACHE_SIZE_AT_320X200 75 * 1024
 
 typedef struct surfcache_s {
     struct surfcache_s *next;
@@ -63,11 +63,6 @@ void ( *prealspandrawer )( void );
 surfcache_t *D_CacheSurface( msurface_t *surface, int miplevel );
 
 extern int D_MipLevelForScale( float scale );
-
-#if id386
-extern void D_PolysetAff8Start( void );
-extern void D_PolysetAff8End( void );
-#endif
 
 extern short *d_pzbuffer;
 extern unsigned int d_zrowbytes, d_zwidth;
