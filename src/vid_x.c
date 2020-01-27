@@ -278,6 +278,8 @@ void ResetFrameBuffer( void ) {
     int mem;
     int pwidth;
 
+    Con_Printf( "ResetFrameBuffer called\n" );
+
     if ( x_framebuffer[0] ) {
         free( x_framebuffer[0]->data );
         free( x_framebuffer[0] );
@@ -580,7 +582,7 @@ void VID_Init( unsigned char *palette ) {
     // even if MITSHM is available, make sure it's a local connection
     if ( XShmQueryExtension( x_disp ) ) {
         char *displayname;
-        doShm = true;
+        doShm = false;
         displayname = (char *)getenv( "DISPLAY" );
         if ( displayname ) {
             char *d = displayname;
@@ -908,7 +910,7 @@ void GetEvent( void ) {
             // printf("config notify\n");
             config_notify_width = x_event.xconfigure.width;
             config_notify_height = x_event.xconfigure.height;
-            config_notify = 1;
+            //config_notify = 1;
             break;
 
         default:
