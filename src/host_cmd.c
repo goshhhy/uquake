@@ -1434,5 +1434,6 @@ void Host_InitCommands( void ) {
     Cmd_AddCommand( "viewnext", Host_Viewnext_f );
     Cmd_AddCommand( "viewprev", Host_Viewprev_f );
 
+	Cmd_AddCommand( "hunk", Hunk_Print );
     Cmd_AddCommand( "mcache", Mod_Print );
 }

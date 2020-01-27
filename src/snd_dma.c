@@ -53,7 +53,7 @@ cvar_t bgmvolume = {"bgmvolume", "1", true};
 cvar_t volume = {"volume", "0.7", true};
 
 cvar_t nosound = {"nosound", "0"};
-cvar_t precache = {"precache", "1"};
+cvar_t precache = {"precache", "0"};
 cvar_t loadas8bit = {"loadas8bit", "0"};
 cvar_t bgmbuffer = {"bgmbuffer", "4096"};
 cvar_t ambient_level = {"ambient_level", "0.3"};

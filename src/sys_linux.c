@@ -351,7 +351,7 @@ int main( int c, char **v ) {
         time = newtime - oldtime;
 
         if ( cls.state == ca_dedicated ) {  // play vcrfiles at max speed
-            if ( time < sys_ticrate.value && ( vcrFile == -1 || recording ) ) {
+            if ( time < sys_ticrate.value ) {
                 usleep( 1 );
                 continue;  // not time to run a server only tic yet
             }

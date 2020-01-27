@@ -419,6 +419,8 @@ void *Hunk_AllocName( int size, char *name ) {
     h->sentinal = HUNK_SENTINAL;
     Q_strncpy( h->name, name, 8 );
 
+    Con_Printf( "hunk allocated: %i:\"%s\"\n", size, name );
+
     return (void *)( h + 1 );
 }
 
@@ -427,7 +429,7 @@ void *Hunk_AllocName( int size, char *name ) {
 Hunk_Alloc
 ===================
 */
-void *Hunk_Alloc( int size ) { return Hunk_AllocName( size, "unknown" ); }
+void *Hunk_Alloc( int size ) { return Hunk_AllocName( size, "(unknown)" ); }
 
 int Hunk_LowMark( void ) { return hunk_low_used; }
 
@@ -494,6 +496,8 @@ void *Hunk_HighAllocName( int size, char *name ) {
     h->size = size;
     h->sentinal = HUNK_SENTINAL;
     Q_strncpy( h->name, name, 8 );
+
+    Con_Printf( "hunk allocated high: %i:\"%s\"\n", size, name );
 
     return (void *)( h + 1 );
 }

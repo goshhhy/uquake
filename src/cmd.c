@@ -474,7 +474,7 @@ void Cmd_AddCommand( char *cmd_name, xcommand_t function ) {
         }
     }
 
-    cmd = Hunk_Alloc( sizeof( cmd_function_t ) );
+    cmd = Hunk_AllocName( sizeof( cmd_function_t ), cmd_name );
     cmd->name = cmd_name;
     cmd->function = function;
     cmd->next = cmd_functions;
