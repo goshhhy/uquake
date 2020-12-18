@@ -27,7 +27,7 @@ static char buf[SND_MAX_BUF_SIZE + 8];
 static char stream[4096 + 8];
 
 static void alsa_callback( snd_pcm_sframes_t sframes ) {
-    int stride = shm->samplebits / 8, len = sframes * stride, offset = 0;
+    int stride = ( shm->samplebits / 8 ) * shm->channels, len = sframes * stride, offset = 0;
     int realpos = bufpos;
 
     if ( len > 4096 ) {
@@ -35,28 +35,22 @@ static void alsa_callback( snd_pcm_sframes_t sframes ) {
         sframes = len / stride;
     }
 
-    printf( "\nsubmit %d bytes\n", len );
-
     if ( bufpos + len >= SND_MAX_BUF_SIZE ) {
         offset = SND_MAX_BUF_SIZE - bufpos;
-        printf( "1 memcpy( stream + %d, buf[%d], %d )\n", 0, bufpos, offset );
         memcpy( &stream[0], &buf[bufpos], offset );
         len -= offset;
         realpos = 0;
     }
-    printf( "2 memcpy( stream + %d, buf[%d], %d )\n", offset, realpos, len );
     memcpy( &stream[offset], &buf[realpos], len );
 
     int err = snd_pcm_writei( handle, stream, sframes );
     if ( err < 0 ) {
         Con_Printf( "Failure writing ALSA sound data: %s\n", snd_strerror( err ) );
     } else {
-        printf("wrote %d bytes\n", err * stride);
         bufpos += err * stride;
         if ( bufpos >= SND_MAX_BUF_SIZE )
             bufpos -= SND_MAX_BUF_SIZE;
     }
-    printf( "final bufpos %d\n", bufpos);
 }
 
 qboolean SNDDMA_Init( void ) {
@@ -145,7 +139,7 @@ qboolean SNDDMA_Init( void ) {
     else if ( ( i = COM_CheckParm( "-sndstereo" ) ) != 0 )
         shm->channels = 2;
     else
-        shm->channels = 1;
+        shm->channels = 2;
 
     err = snd_pcm_hw_params_set_channels( handle, params, shm->channels );
     if ( err < 0 ) {
