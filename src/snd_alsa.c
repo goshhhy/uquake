@@ -51,7 +51,7 @@ static void alsa_callback( snd_pcm_sframes_t sframes ) {
     if ( err < 0 ) {
         Con_Printf( "Failure writing ALSA sound data: %s\n", snd_strerror( err ) );
     } else {
-        printf("wrote %d bytes\n", err * 2);
+        printf("wrote %d bytes\n", err * stride);
         bufpos += err * stride;
         if ( bufpos >= SND_MAX_BUF_SIZE )
             bufpos -= SND_MAX_BUF_SIZE;
@@ -145,7 +145,7 @@ qboolean SNDDMA_Init( void ) {
     else if ( ( i = COM_CheckParm( "-sndstereo" ) ) != 0 )
         shm->channels = 2;
     else
-        shm->channels = 2;
+        shm->channels = 1;
 
     err = snd_pcm_hw_params_set_channels( handle, params, shm->channels );
     if ( err < 0 ) {
@@ -235,7 +235,7 @@ void SNDDMA_Submit( void ) {
     } else if ( nframes == 0 ) {
         return;
     } else if ( nframes == -EPIPE ) {
-        Con_Printf( "buffer underrun\n" );
+        //Con_Printf( "buffer underrun\n" );
         snd_pcm_prepare(handle);
     } else {
         Con_Printf( "ALSA error: %s\n", snd_strerror( nframes ) );
