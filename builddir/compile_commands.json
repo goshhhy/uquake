@@ -1,0 +1,398 @@
+[
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_cl_demo.c.o -MF uquake.p/src_cl_demo.c.o.d -o uquake.p/src_cl_demo.c.o -c ../src/cl_demo.c",
+    "file": "../src/cl_demo.c",
+    "output": "uquake.p/src_cl_demo.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_cl_input.c.o -MF uquake.p/src_cl_input.c.o.d -o uquake.p/src_cl_input.c.o -c ../src/cl_input.c",
+    "file": "../src/cl_input.c",
+    "output": "uquake.p/src_cl_input.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_cl_main.c.o -MF uquake.p/src_cl_main.c.o.d -o uquake.p/src_cl_main.c.o -c ../src/cl_main.c",
+    "file": "../src/cl_main.c",
+    "output": "uquake.p/src_cl_main.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_cl_parse.c.o -MF uquake.p/src_cl_parse.c.o.d -o uquake.p/src_cl_parse.c.o -c ../src/cl_parse.c",
+    "file": "../src/cl_parse.c",
+    "output": "uquake.p/src_cl_parse.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_cl_tent.c.o -MF uquake.p/src_cl_tent.c.o.d -o uquake.p/src_cl_tent.c.o -c ../src/cl_tent.c",
+    "file": "../src/cl_tent.c",
+    "output": "uquake.p/src_cl_tent.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_chase.c.o -MF uquake.p/src_chase.c.o.d -o uquake.p/src_chase.c.o -c ../src/chase.c",
+    "file": "../src/chase.c",
+    "output": "uquake.p/src_chase.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_cmd.c.o -MF uquake.p/src_cmd.c.o.d -o uquake.p/src_cmd.c.o -c ../src/cmd.c",
+    "file": "../src/cmd.c",
+    "output": "uquake.p/src_cmd.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_common.c.o -MF uquake.p/src_common.c.o.d -o uquake.p/src_common.c.o -c ../src/common.c",
+    "file": "../src/common.c",
+    "output": "uquake.p/src_common.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_console.c.o -MF uquake.p/src_console.c.o.d -o uquake.p/src_console.c.o -c ../src/console.c",
+    "file": "../src/console.c",
+    "output": "uquake.p/src_console.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_crc.c.o -MF uquake.p/src_crc.c.o.d -o uquake.p/src_crc.c.o -c ../src/crc.c",
+    "file": "../src/crc.c",
+    "output": "uquake.p/src_crc.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_cvar.c.o -MF uquake.p/src_cvar.c.o.d -o uquake.p/src_cvar.c.o -c ../src/cvar.c",
+    "file": "../src/cvar.c",
+    "output": "uquake.p/src_cvar.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw.c.o -MF uquake.p/src_draw.c.o.d -o uquake.p/src_draw.c.o -c ../src/draw.c",
+    "file": "../src/draw.c",
+    "output": "uquake.p/src_draw.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw_d_edge.c.o -MF uquake.p/src_draw_d_edge.c.o.d -o uquake.p/src_draw_d_edge.c.o -c ../src/draw/d_edge.c",
+    "file": "../src/draw/d_edge.c",
+    "output": "uquake.p/src_draw_d_edge.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw_d_fill.c.o -MF uquake.p/src_draw_d_fill.c.o.d -o uquake.p/src_draw_d_fill.c.o -c ../src/draw/d_fill.c",
+    "file": "../src/draw/d_fill.c",
+    "output": "uquake.p/src_draw_d_fill.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw_d_init.c.o -MF uquake.p/src_draw_d_init.c.o.d -o uquake.p/src_draw_d_init.c.o -c ../src/draw/d_init.c",
+    "file": "../src/draw/d_init.c",
+    "output": "uquake.p/src_draw_d_init.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw_d_modech.c.o -MF uquake.p/src_draw_d_modech.c.o.d -o uquake.p/src_draw_d_modech.c.o -c ../src/draw/d_modech.c",
+    "file": "../src/draw/d_modech.c",
+    "output": "uquake.p/src_draw_d_modech.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw_d_part.c.o -MF uquake.p/src_draw_d_part.c.o.d -o uquake.p/src_draw_d_part.c.o -c ../src/draw/d_part.c",
+    "file": "../src/draw/d_part.c",
+    "output": "uquake.p/src_draw_d_part.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw_d_polyse.c.o -MF uquake.p/src_draw_d_polyse.c.o.d -o uquake.p/src_draw_d_polyse.c.o -c ../src/draw/d_polyse.c",
+    "file": "../src/draw/d_polyse.c",
+    "output": "uquake.p/src_draw_d_polyse.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw_d_scan.c.o -MF uquake.p/src_draw_d_scan.c.o.d -o uquake.p/src_draw_d_scan.c.o -c ../src/draw/d_scan.c",
+    "file": "../src/draw/d_scan.c",
+    "output": "uquake.p/src_draw_d_scan.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw_d_sky.c.o -MF uquake.p/src_draw_d_sky.c.o.d -o uquake.p/src_draw_d_sky.c.o -c ../src/draw/d_sky.c",
+    "file": "../src/draw/d_sky.c",
+    "output": "uquake.p/src_draw_d_sky.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw_d_sprite.c.o -MF uquake.p/src_draw_d_sprite.c.o.d -o uquake.p/src_draw_d_sprite.c.o -c ../src/draw/d_sprite.c",
+    "file": "../src/draw/d_sprite.c",
+    "output": "uquake.p/src_draw_d_sprite.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw_d_surf.c.o -MF uquake.p/src_draw_d_surf.c.o.d -o uquake.p/src_draw_d_surf.c.o -c ../src/draw/d_surf.c",
+    "file": "../src/draw/d_surf.c",
+    "output": "uquake.p/src_draw_d_surf.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw_d_vars.c.o -MF uquake.p/src_draw_d_vars.c.o.d -o uquake.p/src_draw_d_vars.c.o -c ../src/draw/d_vars.c",
+    "file": "../src/draw/d_vars.c",
+    "output": "uquake.p/src_draw_d_vars.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_draw_d_zpoint.c.o -MF uquake.p/src_draw_d_zpoint.c.o.d -o uquake.p/src_draw_d_zpoint.c.o -c ../src/draw/d_zpoint.c",
+    "file": "../src/draw/d_zpoint.c",
+    "output": "uquake.p/src_draw_d_zpoint.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_host.c.o -MF uquake.p/src_host.c.o.d -o uquake.p/src_host.c.o -c ../src/host.c",
+    "file": "../src/host.c",
+    "output": "uquake.p/src_host.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_host_cmd.c.o -MF uquake.p/src_host_cmd.c.o.d -o uquake.p/src_host_cmd.c.o -c ../src/host_cmd.c",
+    "file": "../src/host_cmd.c",
+    "output": "uquake.p/src_host_cmd.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_keys.c.o -MF uquake.p/src_keys.c.o.d -o uquake.p/src_keys.c.o -c ../src/keys.c",
+    "file": "../src/keys.c",
+    "output": "uquake.p/src_keys.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_menu.c.o -MF uquake.p/src_menu.c.o.d -o uquake.p/src_menu.c.o -c ../src/menu.c",
+    "file": "../src/menu.c",
+    "output": "uquake.p/src_menu.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_mathlib.c.o -MF uquake.p/src_mathlib.c.o.d -o uquake.p/src_mathlib.c.o -c ../src/mathlib.c",
+    "file": "../src/mathlib.c",
+    "output": "uquake.p/src_mathlib.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_model.c.o -MF uquake.p/src_model.c.o.d -o uquake.p/src_model.c.o -c ../src/model.c",
+    "file": "../src/model.c",
+    "output": "uquake.p/src_model.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_pr_cmds.c.o -MF uquake.p/src_pr_cmds.c.o.d -o uquake.p/src_pr_cmds.c.o -c ../src/pr_cmds.c",
+    "file": "../src/pr_cmds.c",
+    "output": "uquake.p/src_pr_cmds.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_pr_edict.c.o -MF uquake.p/src_pr_edict.c.o.d -o uquake.p/src_pr_edict.c.o -c ../src/pr_edict.c",
+    "file": "../src/pr_edict.c",
+    "output": "uquake.p/src_pr_edict.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_pr_exec.c.o -MF uquake.p/src_pr_exec.c.o.d -o uquake.p/src_pr_exec.c.o -c ../src/pr_exec.c",
+    "file": "../src/pr_exec.c",
+    "output": "uquake.p/src_pr_exec.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_aclip.c.o -MF uquake.p/src_r_soft_r_aclip.c.o.d -o uquake.p/src_r_soft_r_aclip.c.o -c ../src/r_soft/r_aclip.c",
+    "file": "../src/r_soft/r_aclip.c",
+    "output": "uquake.p/src_r_soft_r_aclip.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_alias.c.o -MF uquake.p/src_r_soft_r_alias.c.o.d -o uquake.p/src_r_soft_r_alias.c.o -c ../src/r_soft/r_alias.c",
+    "file": "../src/r_soft/r_alias.c",
+    "output": "uquake.p/src_r_soft_r_alias.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_bsp.c.o -MF uquake.p/src_r_soft_r_bsp.c.o.d -o uquake.p/src_r_soft_r_bsp.c.o -c ../src/r_soft/r_bsp.c",
+    "file": "../src/r_soft/r_bsp.c",
+    "output": "uquake.p/src_r_soft_r_bsp.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_light.c.o -MF uquake.p/src_r_soft_r_light.c.o.d -o uquake.p/src_r_soft_r_light.c.o -c ../src/r_soft/r_light.c",
+    "file": "../src/r_soft/r_light.c",
+    "output": "uquake.p/src_r_soft_r_light.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_draw.c.o -MF uquake.p/src_r_soft_r_draw.c.o.d -o uquake.p/src_r_soft_r_draw.c.o -c ../src/r_soft/r_draw.c",
+    "file": "../src/r_soft/r_draw.c",
+    "output": "uquake.p/src_r_soft_r_draw.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_efrag.c.o -MF uquake.p/src_r_soft_r_efrag.c.o.d -o uquake.p/src_r_soft_r_efrag.c.o -c ../src/r_soft/r_efrag.c",
+    "file": "../src/r_soft/r_efrag.c",
+    "output": "uquake.p/src_r_soft_r_efrag.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_edge.c.o -MF uquake.p/src_r_soft_r_edge.c.o.d -o uquake.p/src_r_soft_r_edge.c.o -c ../src/r_soft/r_edge.c",
+    "file": "../src/r_soft/r_edge.c",
+    "output": "uquake.p/src_r_soft_r_edge.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_misc.c.o -MF uquake.p/src_r_soft_r_misc.c.o.d -o uquake.p/src_r_soft_r_misc.c.o -c ../src/r_soft/r_misc.c",
+    "file": "../src/r_soft/r_misc.c",
+    "output": "uquake.p/src_r_soft_r_misc.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_main.c.o -MF uquake.p/src_r_soft_r_main.c.o.d -o uquake.p/src_r_soft_r_main.c.o -c ../src/r_soft/r_main.c",
+    "file": "../src/r_soft/r_main.c",
+    "output": "uquake.p/src_r_soft_r_main.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_sky.c.o -MF uquake.p/src_r_soft_r_sky.c.o.d -o uquake.p/src_r_soft_r_sky.c.o -c ../src/r_soft/r_sky.c",
+    "file": "../src/r_soft/r_sky.c",
+    "output": "uquake.p/src_r_soft_r_sky.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_sprite.c.o -MF uquake.p/src_r_soft_r_sprite.c.o.d -o uquake.p/src_r_soft_r_sprite.c.o -c ../src/r_soft/r_sprite.c",
+    "file": "../src/r_soft/r_sprite.c",
+    "output": "uquake.p/src_r_soft_r_sprite.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_surf.c.o -MF uquake.p/src_r_soft_r_surf.c.o.d -o uquake.p/src_r_soft_r_surf.c.o -c ../src/r_soft/r_surf.c",
+    "file": "../src/r_soft/r_surf.c",
+    "output": "uquake.p/src_r_soft_r_surf.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_part.c.o -MF uquake.p/src_r_soft_r_part.c.o.d -o uquake.p/src_r_soft_r_part.c.o -c ../src/r_soft/r_part.c",
+    "file": "../src/r_soft/r_part.c",
+    "output": "uquake.p/src_r_soft_r_part.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_r_soft_r_vars.c.o -MF uquake.p/src_r_soft_r_vars.c.o.d -o uquake.p/src_r_soft_r_vars.c.o -c ../src/r_soft/r_vars.c",
+    "file": "../src/r_soft/r_vars.c",
+    "output": "uquake.p/src_r_soft_r_vars.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_screen.c.o -MF uquake.p/src_screen.c.o.d -o uquake.p/src_screen.c.o -c ../src/screen.c",
+    "file": "../src/screen.c",
+    "output": "uquake.p/src_screen.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_sbar.c.o -MF uquake.p/src_sbar.c.o.d -o uquake.p/src_sbar.c.o -c ../src/sbar.c",
+    "file": "../src/sbar.c",
+    "output": "uquake.p/src_sbar.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_sv_main.c.o -MF uquake.p/src_sv_main.c.o.d -o uquake.p/src_sv_main.c.o -c ../src/sv_main.c",
+    "file": "../src/sv_main.c",
+    "output": "uquake.p/src_sv_main.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_sv_phys.c.o -MF uquake.p/src_sv_phys.c.o.d -o uquake.p/src_sv_phys.c.o -c ../src/sv_phys.c",
+    "file": "../src/sv_phys.c",
+    "output": "uquake.p/src_sv_phys.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_sv_move.c.o -MF uquake.p/src_sv_move.c.o.d -o uquake.p/src_sv_move.c.o -c ../src/sv_move.c",
+    "file": "../src/sv_move.c",
+    "output": "uquake.p/src_sv_move.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_sv_user.c.o -MF uquake.p/src_sv_user.c.o.d -o uquake.p/src_sv_user.c.o -c ../src/sv_user.c",
+    "file": "../src/sv_user.c",
+    "output": "uquake.p/src_sv_user.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_zone.c.o -MF uquake.p/src_zone.c.o.d -o uquake.p/src_zone.c.o -c ../src/zone.c",
+    "file": "../src/zone.c",
+    "output": "uquake.p/src_zone.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_view.c.o -MF uquake.p/src_view.c.o.d -o uquake.p/src_view.c.o -c ../src/view.c",
+    "file": "../src/view.c",
+    "output": "uquake.p/src_view.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_wad.c.o -MF uquake.p/src_wad.c.o.d -o uquake.p/src_wad.c.o -c ../src/wad.c",
+    "file": "../src/wad.c",
+    "output": "uquake.p/src_wad.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_world.c.o -MF uquake.p/src_world.c.o.d -o uquake.p/src_world.c.o -c ../src/world.c",
+    "file": "../src/world.c",
+    "output": "uquake.p/src_world.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_net_net_dgrm.c.o -MF uquake.p/src_net_net_dgrm.c.o.d -o uquake.p/src_net_net_dgrm.c.o -c ../src/net/net_dgrm.c",
+    "file": "../src/net/net_dgrm.c",
+    "output": "uquake.p/src_net_net_dgrm.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_net_net_loop.c.o -MF uquake.p/src_net_net_loop.c.o.d -o uquake.p/src_net_net_loop.c.o -c ../src/net/net_loop.c",
+    "file": "../src/net/net_loop.c",
+    "output": "uquake.p/src_net_net_loop.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_net_net_main.c.o -MF uquake.p/src_net_net_main.c.o.d -o uquake.p/src_net_net_main.c.o -c ../src/net/net_main.c",
+    "file": "../src/net/net_main.c",
+    "output": "uquake.p/src_net_net_main.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_net_net_udp.c.o -MF uquake.p/src_net_net_udp.c.o.d -o uquake.p/src_net_net_udp.c.o -c ../src/net/net_udp.c",
+    "file": "../src/net/net_udp.c",
+    "output": "uquake.p/src_net_net_udp.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_net_net_bsd.c.o -MF uquake.p/src_net_net_bsd.c.o.d -o uquake.p/src_net_net_bsd.c.o -c ../src/net/net_bsd.c",
+    "file": "../src/net/net_bsd.c",
+    "output": "uquake.p/src_net_net_bsd.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_cd_linux.c.o -MF uquake.p/src_cd_linux.c.o.d -o uquake.p/src_cd_linux.c.o -c ../src/cd_linux.c",
+    "file": "../src/cd_linux.c",
+    "output": "uquake.p/src_cd_linux.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_sys_linux.c.o -MF uquake.p/src_sys_linux.c.o.d -o uquake.p/src_sys_linux.c.o -c ../src/sys_linux.c",
+    "file": "../src/sys_linux.c",
+    "output": "uquake.p/src_sys_linux.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_vid_x.c.o -MF uquake.p/src_vid_x.c.o.d -o uquake.p/src_vid_x.c.o -c ../src/vid_x.c",
+    "file": "../src/vid_x.c",
+    "output": "uquake.p/src_vid_x.c.o"
+  },
+  {
+    "directory": "/home/sanae/code/uquake/builddir",
+    "command": "cc -Iuquake.p -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wextra -Wpedantic -std=gnu99 -g -MD -MQ uquake.p/src_snd_null.c.o -MF uquake.p/src_snd_null.c.o.d -o uquake.p/src_snd_null.c.o -c ../src/snd_null.c",
+    "file": "../src/snd_null.c",
+    "output": "uquake.p/src_snd_null.c.o"
+  }
+]

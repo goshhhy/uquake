@@ -42,7 +42,7 @@ typedef struct {
     int output;
 } keymap_t;
 
-viddef_t vid;  // global video state
+extern viddef_t vid;  // global video state
 unsigned short d_8to16table[256];
 
 int num_shades = 32;
@@ -82,8 +82,8 @@ static long X11_buffersize;
 int vid_surfcachesize;
 void *vid_surfcache;
 
-void ( *vid_menudrawfn )( void );
-void ( *vid_menukeyfn )( int key );
+extern void ( *vid_menudrawfn )( void );
+extern void ( *vid_menukeyfn )( int key );
 void VID_MenuKey( int key );
 
 typedef unsigned short PIXEL16;
@@ -408,8 +408,8 @@ void VID_Init( unsigned char *palette ) {
     int template_mask;
 
     ignorenext = 0;
-    vid.width = 320;
-    vid.height = 200;
+    vid.width = 640;
+    vid.height = 480;
     vid.maxwarpwidth = WARP_WIDTH;
     vid.maxwarpheight = WARP_HEIGHT;
     vid.numpages = 2;

@@ -419,7 +419,7 @@ void *Hunk_AllocName( int size, char *name ) {
     h->sentinal = HUNK_SENTINAL;
     Q_strncpy( h->name, name, 8 );
 
-    Con_Printf( "%i hunk alloc for \"%s\"\n", size, name );
+    //Con_Printf( "%i hunk alloc for \"%s\"\n", size, name );
 
     return (void *)( h + 1 );
 }
@@ -497,7 +497,7 @@ void *Hunk_HighAllocName( int size, char *name ) {
     h->sentinal = HUNK_SENTINAL;
     Q_strncpy( h->name, name, 8 );
 
-    Con_Printf( "%i hunk allochigh for \"%s\"\n", size, name );
+    //Con_Printf( "%i hunk allochigh for \"%s\"\n", size, name );
 
     return (void *)( h + 1 );
 }
@@ -805,6 +805,9 @@ Cache_Check
 */
 void *Cache_Check( cache_user_t *c ) {
     cache_system_t *cs;
+
+    if ( c == NULL )
+        return NULL;
 
     if ( !c->data )
         return NULL;

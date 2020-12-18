@@ -1,0 +1,145 @@
+Build started at 2020-12-17T23:23:22.118660
+Main binary: /usr/bin/python
+Build Options: -Dbuildtype=debug
+Python system: Linux
+The Meson build system
+Version: 0.56.0
+Source dir: /home/sanae/code/uquake
+Build dir: /home/sanae/code/uquake/builddir
+Build type: native build
+Project name: uquake
+Project version: undefined
+None of 'CC' are defined in the environment, not changing global flags.
+None of 'CFLAGS' are defined in the environment, not changing global flags.
+None of 'LDFLAGS' are defined in the environment, not changing global flags.
+None of 'CPPFLAGS' are defined in the environment, not changing global flags.
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Sanity testing C compiler: cc
+Is cross compiler: False.
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Sanity check compiler command line: cc /home/sanae/code/uquake/builddir/meson-private/sanitycheckc.c -o /home/sanae/code/uquake/builddir/meson-private/sanitycheckc.exe -pipe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /home/sanae/code/uquake/builddir/meson-private/sanitycheckc.exe
+C compiler for the host machine: cc (gcc 10.2.0 "cc (GCC) 10.2.0")
+C linker for the host machine: cc ld.bfd 2.35.1
+None of 'AR' are defined in the environment, not changing global flags.
+None of 'CC' are defined in the environment, not changing global flags.
+None of 'CFLAGS' are defined in the environment, not changing global flags.
+None of 'LDFLAGS' are defined in the environment, not changing global flags.
+None of 'CPPFLAGS' are defined in the environment, not changing global flags.
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Sanity testing C compiler: cc
+Is cross compiler: False.
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Sanity check compiler command line: cc /home/sanae/code/uquake/builddir/meson-private/sanitycheckc.c -o /home/sanae/code/uquake/builddir/meson-private/sanitycheckc.exe -pipe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /home/sanae/code/uquake/builddir/meson-private/sanitycheckc.exe
+C compiler for the build machine: cc (gcc 10.2.0 "cc (GCC) 10.2.0")
+C linker for the build machine: cc ld.bfd 2.35.1
+None of 'AR' are defined in the environment, not changing global flags.
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Target machine cpu family: x86_64
+Target machine cpu: x86_64
+Pkg-config binary for MachineChoice.HOST is not cached.
+None of 'PKG_CONFIG' are defined in the environment, not changing global flags.
+Pkg-config binary missing from cross or native file, or env var undefined.
+Trying a default Pkg-config fallback at pkg-config
+Found pkg-config: /usr/bin/pkg-config (1.7.3)
+Determining dependency 'x11' with pkg-config executable '/usr/bin/pkg-config'
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --modversion x11` -> 0
+1.7.0
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --cflags x11` -> 0
+
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config x11 --libs` -> 0
+-L/usr/lib -lX11
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config x11 --libs` -> 0
+-lX11
+None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global flags.
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Running compile:
+Working directory:  /home/sanae/code/uquake/builddir/meson-private/tmpkan2zwmx
+Command line:  cc /home/sanae/code/uquake/builddir/meson-private/tmpkan2zwmx/testfile.c -o /home/sanae/code/uquake/builddir/meson-private/tmpkan2zwmx/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 
+
+Code:
+ #include<stdio.h>
+        
+        int main(void) {
+            printf("%ld\n", (long)(sizeof(void *)));
+            return 0;
+        };
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Program stdout:
+
+8
+
+Program stderr:
+
+
+Running compile:
+Working directory:  /home/sanae/code/uquake/builddir/meson-private/tmprzbcnmp7
+Command line:  cc /home/sanae/code/uquake/builddir/meson-private/tmprzbcnmp7/testfile.c -o /home/sanae/code/uquake/builddir/meson-private/tmprzbcnmp7/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+
+Code:
+ 
+Compiler stdout:
+ install: /usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/
+programs: =/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../x86_64-pc-linux-gnu/bin/x86_64-pc-linux-gnu/10.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../x86_64-pc-linux-gnu/bin/
+libraries: =/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../x86_64-pc-linux-gnu/lib/x86_64-pc-linux-gnu/10.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../x86_64-pc-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../x86_64-pc-linux-gnu/10.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib/:/lib/x86_64-pc-linux-gnu/10.2.0/:/lib/../lib/:/usr/lib/x86_64-pc-linux-gnu/10.2.0/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../x86_64-pc-linux-gnu/lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../:/lib/:/usr/lib/
+
+Compiler stderr:
+ 
+Run-time dependency x11 found: YES 1.7.0
+Pkg-config binary for MachineChoice.HOST is cached.
+Determining dependency 'xext' with pkg-config executable '/usr/bin/pkg-config'
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --modversion xext` -> 0
+1.3.4
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --cflags xext` -> 0
+
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config xext --libs` -> 0
+-L/usr/lib -lXext
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config xext --libs` -> 0
+-lXext
+None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global flags.
+Run-time dependency xext found: YES 1.3.4
+None of 'CC_LD' are defined in the environment, not changing global flags.
+Running compile:
+Working directory:  /home/sanae/code/uquake/builddir/meson-private/tmpx4w_f853
+Command line:  cc /home/sanae/code/uquake/builddir/meson-private/tmpx4w_f853/testfile.c -o /home/sanae/code/uquake/builddir/meson-private/tmpx4w_f853/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -Wl,--start-group -lm -Wl,--end-group -Wl,--allow-shlib-undefined 
+
+Code:
+ int main(void) { return 0; }
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Library m found: YES
+Build targets in project: 1
+
+Found ninja-1.10.2 at /usr/bin/ninja
+None of 'STRIP' are defined in the environment, not changing global flags.
+None of 'STRIP' are defined in the environment, not changing global flags.

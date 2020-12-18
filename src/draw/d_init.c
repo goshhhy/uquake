@@ -7,8 +7,8 @@
 #define NUM_MIPS 4
 
 cvar_t d_subdiv16 = {"d_subdiv16", "1"};
-cvar_t d_mipcap = {"d_mipcap", "8"};
-cvar_t d_mipscale = {"d_mipscale", "8"};
+cvar_t d_mipcap = {"d_mipcap", "0"};
+cvar_t d_mipscale = {"d_mipscale", "1"};
 
 surfcache_t *d_initial_rover;
 qboolean d_roverwrapped;

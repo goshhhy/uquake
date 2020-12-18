@@ -2,6 +2,7 @@ project('uquake', 'c', default_options : ['buildtype=debug', 'c_std=gnu99', 'war
 
 x11 = dependency('x11')
 xshm = dependency('xext')
+alsa = dependency('alsa')
 
 cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required : false)
@@ -29,7 +30,10 @@ if target_platform == 'linux_x11'
         'src/cd_linux.c',
         'src/sys_linux.c',
         'src/vid_x.c',
-        'src/snd_null.c'
+        'src/snd_alsa.c',
+        'src/snd_dma.c',
+        'src/snd_mem.c',
+        'src/snd_mix.c'
     ]
 else
     error('target platform not supplied or unsupported')
@@ -94,4 +98,4 @@ uquake_base_sources = [  'src/cl_demo.c',
                     'src/world.c',
                 ]
 
-executable('uquake', [uquake_base_sources, uquake_net_sources, uquake_platform_sources], dependencies : [x11, xshm, m_dep], install : true)
+executable('uquake', [uquake_base_sources, uquake_net_sources, uquake_platform_sources], dependencies : [x11, xshm, m_dep, alsa], install : true)

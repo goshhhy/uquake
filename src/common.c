@@ -19,8 +19,6 @@ qboolean com_modified;  // set true if using non-id files
 
 qboolean proghack;
 
-int static_registered = 1;  // only for startup check, then set
-
 qboolean msg_suppress_1 = 0;
 
 void COM_InitFilesystem( void );
@@ -865,49 +863,6 @@ int COM_CheckParm( char *parm ) {
     return 0;
 }
 
-/*
-================
-COM_CheckRegistered
-
-Looks for the pop.txt file and verifies it.
-Sets the "registered" cvar.
-Immediately exits out if an alternate game was attempted to be started without
-being registered.
-================
-*/
-void COM_CheckRegistered( void ) {
-    int h;
-    unsigned short check[128];
-    int i;
-
-    COM_OpenFile( "gfx/pop.lmp", &h );
-    static_registered = 0;
-
-    if ( h == -1 ) {
-#if WINDED
-        Sys_Error(
-            "This dedicated server requires a full registered copy of Quake" );
-#endif
-        Con_Printf( "Playing shareware version.\n" );
-        if ( com_modified )
-            Sys_Error(
-                "You must have the registered version to use modified games" );
-        return;
-    }
-
-    Sys_FileRead( h, check, sizeof( check ) );
-    COM_CloseFile( h );
-
-    for ( i = 0; i < 128; i++ )
-        if ( pop[i] != (unsigned short)BigShort( check[i] ) )
-            Sys_Error( "Corrupted data file." );
-
-    Cvar_Set( "cmdline", com_cmdline );
-    Cvar_Set( "registered", "1" );
-    static_registered = 1;
-    Con_Printf( "Playing registered version.\n" );
-}
-
 void COM_Path_f( void );
 
 /*
@@ -1001,7 +956,6 @@ void COM_Init( char *basedir ) {
     Cmd_AddCommand( "path", COM_Path_f );
 
     COM_InitFilesystem();
-    COM_CheckRegistered();
 }
 
 /*
@@ -1217,8 +1171,8 @@ int COM_FindFile( char *filename, int *handle, FILE **file ) {
             pak = search->pack;
             for ( i = 0; i < pak->numfiles; i++ )
                 if ( !strcmp( pak->files[i].name, filename ) ) {  // found it!
-                    Sys_Printf( "PackFile: %s : %s\n", pak->filename,
-                                filename );
+                    //Sys_Printf( "PackFile: %s : %s\n", pak->filename,
+                    //            filename );
                     if ( handle ) {
                         *handle = pak->handle;
                         Sys_FileSeek( pak->handle, pak->files[i].filepos );
@@ -1232,12 +1186,6 @@ int COM_FindFile( char *filename, int *handle, FILE **file ) {
                 }
         } else {
             // check a file in the directory tree
-            if ( !static_registered ) {  // if not a registered version, don't
-                                         // ever go beyond base
-                if ( strchr( filename, '/' ) || strchr( filename, '\\' ) )
-                    continue;
-            }
-
             sprintf( netpath, "%s/%s", search->filename, filename );
 
             findtime = Sys_FileTime( netpath );
@@ -1357,16 +1305,16 @@ byte *COM_LoadFile( char *path, int usehunk ) {
 
     if ( usehunk == 1 ) {
         buf = Hunk_AllocName( len + 1, base );
-        Sys_Printf( "COM_LoadFile: \"%s\:%i via hunk\n", path, len + 1 );
+        //Sys_Printf( "COM_LoadFile: \"%s\:%i via hunk\n", path, len + 1 );
     } else if ( usehunk == 2 ) {
         buf = Hunk_TempAlloc( len + 1 );
-        Sys_Printf( "COM_LoadFile: \"%s\:%i via temp\n", path, len + 1 );
+        //Sys_Printf( "COM_LoadFile: \"%s\:%i via temp\n", path, len + 1 );
     } else if ( usehunk == 0 ) {
         buf = Z_Malloc( len + 1 );
-        Sys_Printf( "COM_LoadFile: \"%s\:%i via zone\n", path, len + 1 );
+        //Sys_Printf( "COM_LoadFile: \"%s\:%i via zone\n", path, len + 1 );
     } else if ( usehunk == 3 ) {
         buf = Cache_Alloc( loadcache, len + 1, base );
-        Sys_Printf( "COM_LoadFile: \"%s\:%i via cache\n", path, len + 1 );
+        //Sys_Printf( "COM_LoadFile: \"%s\:%i via cache\n", path, len + 1 );
     } else if ( usehunk == 4 ) {
         if ( len + 1 > loadsize )
             buf = Hunk_TempAlloc( len + 1 );

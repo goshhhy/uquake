@@ -1,2 +1,3 @@
 option('enable_networking', type : 'boolean')
 option('target_platform', type: 'combo', choices : ['none', 'linux_x11'], value : 'linux_x11')
+option('renderer', type: 'combo', choices: ['soft', 'gl', 'fx'], value: 'fx')
