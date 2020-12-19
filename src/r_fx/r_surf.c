@@ -570,3 +570,46 @@ void R_GenTile( msurface_t *psurf, void *pdest ) {
         Sys_Error( "Unknown tile type" );
     }
 }
+
+#define DRAWPOLY_MAX_VERTS 32
+
+void Fx_DrawPoly( polydesc_t polydesc ) {
+    int i;
+    grVertex_t verts[DRAWPOLY_MAX_VERTS + 1];
+
+    if ( polydesc.numverts > DRAWPOLY_MAX_VERTS ) {
+        Con_Printf("Fx_DrawPoly: too many verts: '%d' (max %d)\n", polydesc.numverts, DRAWPOLY_MAX_VERTS );
+        return;
+    }
+
+    memset( verts, 0, sizeof( grVertex_t ) * ( DRAWPOLY_MAX_VERTS + 1 ) );
+
+    if ( r_wireframe.value ) {
+        verts[0].x = polydesc.pverts[0].u;
+        verts[0].y = polydesc.pverts[0].v;
+        verts[0].zi = polydesc.pverts[0].zi;
+        verts[0].w = 1 / polydesc.pverts[0].zi;
+        for ( i = 1; i < polydesc.numverts; i++ ) {
+            verts[i].x = polydesc.pverts[i].u;
+            verts[i].y = polydesc.pverts[i].v;
+            verts[i].zi = polydesc.pverts[i].zi;
+            verts[i].w = 1 / polydesc.pverts[i].zi;
+        }
+        memcpy( &verts[i], &verts[0], sizeof( grVertex_t ) );
+        grDrawVertexArrayContiguous( GR_POLYGON, i, verts, sizeof(grVertex_t) );
+        for ( i = 0; i <= polydesc.numverts; i++ ) {
+            verts[i].r = 222.0;
+            verts[i].g = 210.0;
+            verts[i].b = 200.0;            
+        }
+        grEnable(GR_AA_ORDERED);
+        grDrawVertexArrayContiguous( GR_LINE_STRIP, i, verts, sizeof(grVertex_t) );
+        grDisable(GR_AA_ORDERED);
+    } else {
+        if ( polydesc.numverts != 3 ) {
+            Con_Printf("Fx_DrawPoly: bad numverts '%d'\n", polydesc.numverts );
+        } else {
+            Con_Printf("Fx_DrawPoly: good numverts '%d'\n", polydesc.numverts );
+        }
+    }
+}

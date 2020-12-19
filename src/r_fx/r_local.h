@@ -3,6 +3,7 @@
 
 #ifndef GLQUAKE
 #include "r_shared.h"
+#include <glide.h>
 
 #define ALIAS_BASE_SIZE_RATIO ( 1.0 / 11.0 )
 // normalizing factor so player model works out to about
@@ -53,6 +54,7 @@ extern cvar_t r_numsurfs;
 extern cvar_t r_reportedgeout;
 extern cvar_t r_maxedges;
 extern cvar_t r_numedges;
+extern cvar_t r_wireframe;
 
 #define XCENTERING ( 1.0 / 2.0 )
 #define YCENTERING ( 1.0 / 2.0 )
@@ -289,5 +291,12 @@ void R_EmitEdge( mvertex_t *pv0, mvertex_t *pv1 );
 void R_ClipEdge( mvertex_t *pv0, mvertex_t *pv1, clipplane_t *clip );
 void R_SplitEntityOnNode2( mnode_t *node );
 void R_MarkLights( dlight_t *light, int bit, mnode_t *node );
+
+void SCR_GrScreenShot_f( void );
+
+typedef struct grVertex_s {
+    float x, y, zi, w;
+    float r, g, b, n;
+} grVertex_t;
 
 #endif

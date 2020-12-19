@@ -442,3 +442,57 @@ void R_SetupFrame( void ) {
 
     D_SetupFrame();
 }
+
+/*
+==================
+SCR_ScreenShot_f
+==================
+*/
+void SCR_GrScreenShot_f( void ) {
+    byte *buffer;
+    char pcxname[80];
+    char checkname[MAX_OSPATH];
+    int i, c, temp, temp2, width = 640, height = 480;
+    //
+    // find a file name to save it to
+    //
+    strcpy( pcxname, "quake00.tga" );
+
+    for ( i = 0; i <= 99; i++ ) {
+        pcxname[5] = i / 10 + '0';
+        pcxname[6] = i % 10 + '0';
+        sprintf( checkname, "%s/%s", com_gamedir, pcxname );
+        if ( Sys_FileTime( checkname ) == -1 )
+            break;  // file doesn't exist
+    }
+    if ( i == 100 ) {
+        Con_Printf( "SCR_GrScreenShot_f: Couldn't create a tga file\n" );
+        return;
+    }
+
+    buffer = malloc( width * height * 2 + 18 );
+    memset( buffer, 0, 18 );
+    buffer[2] = 2;  // uncompressed type
+    buffer[12] = width & 255;
+    buffer[13] = width >> 8;
+    buffer[14] = height & 255;
+    buffer[15] = height >> 8;
+    buffer[16] = 16;  // pixel size
+
+    grLfbReadRegion( GR_BUFFER_FRONTBUFFER, 0, 0, width, height, width * 2, buffer + 18 );
+
+    // 565 to 555
+    c = 18 + width * height * 2;
+    for ( i = 18; i < c; i += 2 ) {
+        temp = ( buffer[i] & 0xC0 ) >> 1;
+        temp |= ( buffer[i + 1] & 0x01 ) << 7;
+        temp |= ( buffer[i] & 0x01F );
+        buffer[i] = temp;
+        buffer[i + 1] = ( buffer[i + 1] >> 1 ) & 0x7F;
+    }
+
+    COM_WriteFile( pcxname, buffer, width * height * 2 + 18 );
+
+    free( buffer );
+    Con_Printf( "Wrote %s\n", pcxname );
+}

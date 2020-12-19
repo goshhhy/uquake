@@ -155,6 +155,27 @@ void R_InitTextures( void ) {
     }
 }
 
+void R_Fx_Init( void ) {
+    int boards;
+    
+    grGlideInit();
+    grGet( GR_NUM_BOARDS, 4, &boards );
+
+    Con_Printf( "3dfx: %d compatible graphics boards found\n", boards );
+
+    if ( boards < 1 )
+        return;
+
+    grSstSelect(0);
+
+    grSstWinOpen( NULL, GR_RESOLUTION_640x480, GR_REFRESH_60Hz, GR_COLORFORMAT_RGBA, GR_ORIGIN_UPPER_LEFT, 2, 1 );
+
+}
+
+void R_Fx_Shutdown( void ) {
+    grGlideShutdown();
+}
+
 /*
 ===============
 R_Init
@@ -206,8 +227,14 @@ void R_Init( void ) {
     r_refdef.xOrigin = XCENTERING;
     r_refdef.yOrigin = YCENTERING;
 
+    R_Fx_Init();
+
     R_InitParticles();
     D_Init();
+}
+
+void R_Shutdown( void ) {
+    R_Fx_Shutdown();
 }
 
 /*

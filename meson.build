@@ -6,6 +6,7 @@ alsa = dependency('alsa')
 
 cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required : false)
+glide3 = cc.find_library('glide3', required : false)
 
 use_networking = get_option('enable_networking')
 if use_networking == true
@@ -72,20 +73,20 @@ uquake_base_sources = [  'src/cl_demo.c',
                     'src/pr_cmds.c',
                     'src/pr_edict.c',
                     'src/pr_exec.c',
-                    'src/r_soft/r_aclip.c',
-                    'src/r_soft/r_alias.c',
-                    'src/r_soft/r_bsp.c',
-                    'src/r_soft/r_light.c',
-                    'src/r_soft/r_draw.c',
-                    'src/r_soft/r_efrag.c',
-                    'src/r_soft/r_edge.c',
-                    'src/r_soft/r_misc.c',
-                    'src/r_soft/r_main.c',
-                    'src/r_soft/r_sky.c',
-                    'src/r_soft/r_sprite.c',
-                    'src/r_soft/r_surf.c',
-                    'src/r_soft/r_part.c',
-                    'src/r_soft/r_vars.c',
+                    'src/r_fx/r_aclip.c',
+                    'src/r_fx/r_alias.c',
+                    'src/r_fx/r_bsp.c',
+                    'src/r_fx/r_light.c',
+                    'src/r_fx/r_draw.c',
+                    'src/r_fx/r_efrag.c',
+                    'src/r_fx/r_edge.c',
+                    'src/r_fx/r_misc.c',
+                    'src/r_fx/r_main.c',
+                    'src/r_fx/r_sky.c',
+                    'src/r_fx/r_sprite.c',
+                    'src/r_fx/r_surf.c',
+                    'src/r_fx/r_part.c',
+                    'src/r_fx/r_vars.c',
                     'src/screen.c',
                     'src/sbar.c',
                     'src/sv_main.c',
@@ -98,4 +99,4 @@ uquake_base_sources = [  'src/cl_demo.c',
                     'src/world.c',
                 ]
 
-executable('uquake', [uquake_base_sources, uquake_net_sources, uquake_platform_sources], dependencies : [x11, xshm, m_dep, alsa], install : true)
+executable('uquake', [uquake_base_sources, uquake_net_sources, uquake_platform_sources], dependencies : [x11, xshm, m_dep, alsa, glide3], install : true)

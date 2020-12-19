@@ -21,6 +21,43 @@ int r_numparticles;
 
 vec3_t r_pright, r_pup, r_ppn;
 
+void Fx_DrawParticle( particle_t *pparticle ) {
+    vec3_t local, transformed;
+    float zi;
+    byte *pdest;
+    int i, izi, pix, count, u, v, c;
+    char *cl = &c;
+    grVertex_t pt;
+
+    // transform point
+    VectorSubtract( pparticle->org, r_origin, local );
+
+    transformed[0] = DotProduct( local, r_pright );
+    transformed[1] = DotProduct( local, r_pup );
+    transformed[2] = DotProduct( local, r_ppn );
+
+    if ( transformed[2] < PARTICLE_Z_CLIP )
+        return;
+
+    // project the point
+    // FIXME: preadjust xcenter and ycenter
+    zi = 1.0 / transformed[2];
+    u = (int)( xcenter + zi * transformed[0] + 0.5 );
+    v = (int)( ycenter - zi * transformed[1] + 0.5 );
+
+    pt.x = u;
+    pt.y = v;
+    pt.w = transformed[2];
+    pt.zi = zi;
+
+    c = d_8to24table[(int)pparticle->color];
+    pt.r = ((float)cl[2]);
+    pt.g = ((float)cl[1]);
+    pt.b = ((float)cl[0]);
+
+    grDrawPoint( &pt );
+}
+
 /*
 ===============
 R_InitParticles
@@ -606,6 +643,7 @@ void R_DrawParticles( void ) {
                     p->org[2] + right[2] * scale );
 #else
         D_DrawParticle( p );
+        Fx_DrawParticle( p );
 #endif
         p->org[0] += p->vel[0] * frametime;
         p->org[1] += p->vel[1] * frametime;

@@ -118,6 +118,7 @@ cvar_t r_maxedges = {"r_maxedges", "0"};
 cvar_t r_numedges = {"r_numedges", "0"};
 cvar_t r_aliastransbase = {"r_aliastransbase", "200"};
 cvar_t r_aliastransadj = {"r_aliastransadj", "100"};
+cvar_t r_wireframe = {"r_wireframe", "1"};
 
 extern cvar_t scr_fov;
 
@@ -155,6 +156,37 @@ void R_InitTextures( void ) {
     }
 }
 
+void R_Fx_Init( void ) {
+    int boards;
+    
+    grGlideInit();
+    grGet( GR_NUM_BOARDS, 4, &boards );
+
+    Con_Printf( "3dfx: %d compatible graphics boards found\n", boards );
+
+    if ( boards < 1 )
+        return;
+
+    grSstSelect(0);
+
+    grSstWinOpen( NULL, GR_RESOLUTION_640x480, GR_REFRESH_60Hz, GR_COLORFORMAT_RGBA, GR_ORIGIN_UPPER_LEFT, 2, 1 );
+
+    grCoordinateSpace(GR_WINDOW_COORDS);
+    grVertexLayout(GR_PARAM_XY, 0, GR_PARAM_ENABLE);
+    grVertexLayout(GR_PARAM_Q, 8, GR_PARAM_ENABLE);
+    grVertexLayout(GR_PARAM_W, 12, GR_PARAM_ENABLE);
+    grVertexLayout(GR_PARAM_RGB, 16, GR_PARAM_ENABLE);
+
+    grDepthBufferMode( GR_DEPTHBUFFER_WBUFFER );
+    grDepthBufferFunction( GR_CMP_LESS );
+    grDepthMask( FXTRUE );
+    grEnable( GR_SHAMELESS_PLUG );
+}
+
+void R_Fx_Shutdown( void ) {
+    grGlideShutdown();
+}
+
 /*
 ===============
 R_Init
@@ -170,6 +202,7 @@ void R_Init( void ) {
 
     Cmd_AddCommand( "timerefresh", R_TimeRefresh_f );
     Cmd_AddCommand( "pointfile", R_ReadPointFile_f );
+    Cmd_AddCommand( "grscreenshot", SCR_GrScreenShot_f );
 
     Cvar_RegisterVariable( &r_draworder );
     Cvar_RegisterVariable( &r_speeds );
@@ -192,6 +225,7 @@ void R_Init( void ) {
     Cvar_RegisterVariable( &r_numedges );
     Cvar_RegisterVariable( &r_aliastransbase );
     Cvar_RegisterVariable( &r_aliastransadj );
+    Cvar_RegisterVariable( &r_wireframe );
 
     Cvar_SetValue( "r_maxedges", (float)NUMSTACKEDGES );
     Cvar_SetValue( "r_maxsurfs", (float)NUMSTACKSURFACES );
@@ -206,8 +240,16 @@ void R_Init( void ) {
     r_refdef.xOrigin = XCENTERING;
     r_refdef.yOrigin = YCENTERING;
 
+    R_Fx_Init();
+
     R_InitParticles();
     D_Init();
+
+    r_drawpolys = 1;
+}
+
+void R_Shutdown( void ) {
+    R_Fx_Shutdown();
 }
 
 /*
@@ -715,35 +757,34 @@ void R_DrawBEntitiesOnList( void ) {
                     // if the driver wants polygons, deliver those. Z-buffering
                     // is on at this point, so no clipping to the world tree is
                     // needed, just frustum clipping
-                    if ( r_drawpolys | r_drawculledpolys ) {
+                    if ( r_drawpolys )
                         R_ZDrawSubmodelPolys( clmodel );
-                    } else {
-                        r_pefragtopnode = NULL;
+                    
+                    r_pefragtopnode = NULL;
 
-                        for ( j = 0; j < 3; j++ ) {
-                            r_emins[j] = minmaxs[j];
-                            r_emaxs[j] = minmaxs[3 + j];
+                    for ( j = 0; j < 3; j++ ) {
+                        r_emins[j] = minmaxs[j];
+                        r_emaxs[j] = minmaxs[3 + j];
+                    }
+
+                    R_SplitEntityOnNode2( cl.worldmodel->nodes );
+
+                    if ( r_pefragtopnode ) {
+                        currententity->topnode = r_pefragtopnode;
+
+                        if ( r_pefragtopnode->contents >= 0 ) {
+                            // not a leaf; has to be clipped to the world
+                            // BSP
+                            r_clipflags = clipflags;
+                            R_DrawSolidClippedSubmodelPolygons( clmodel );
+                        } else {
+                            // falls entirely in one leaf, so we just put
+                            // all the edges in the edge list and let 1/z
+                            // sorting handle drawing order
+                            R_DrawSubmodelPolygons( clmodel, clipflags );
                         }
 
-                        R_SplitEntityOnNode2( cl.worldmodel->nodes );
-
-                        if ( r_pefragtopnode ) {
-                            currententity->topnode = r_pefragtopnode;
-
-                            if ( r_pefragtopnode->contents >= 0 ) {
-                                // not a leaf; has to be clipped to the world
-                                // BSP
-                                r_clipflags = clipflags;
-                                R_DrawSolidClippedSubmodelPolygons( clmodel );
-                            } else {
-                                // falls entirely in one leaf, so we just put
-                                // all the edges in the edge list and let 1/z
-                                // sorting handle drawing order
-                                R_DrawSubmodelPolygons( clmodel, clipflags );
-                            }
-
-                            currententity->topnode = NULL;
-                        }
+                        currententity->topnode = NULL;
                     }
 
                     // put back world rotation and frustum clipping
@@ -826,7 +867,7 @@ void R_EdgeDrawing( void ) {
         VID_LockBuffer();
     }
 
-    if ( !( r_drawpolys | r_drawculledpolys ) )
+    //if ( !( r_drawpolys | r_drawculledpolys ) )
         R_ScanEdges();
 }
 
@@ -839,11 +880,15 @@ r_refdef must be set before the first call
 */
 void R_RenderView_( void ) {
     byte warpbuffer[WARP_WIDTH * WARP_HEIGHT];
+    FxU32 wrange[2];
 
     r_warpbuffer = warpbuffer;
 
     if ( r_timegraph.value || r_speeds.value || r_dspeeds.value )
         r_time1 = Sys_FloatTime();
+
+    grGet( GR_WDEPTH_MIN_MAX, 8, wrange );
+    grBufferClear( 0x00333300, 0, wrange[1] );
 
     R_SetupFrame();
 
@@ -916,6 +961,8 @@ void R_RenderView_( void ) {
 
     if ( r_dspeeds.value )
         R_PrintDSpeeds();
+
+    grBufferSwap( 1 );
 
     if ( r_reportsurfout.value && r_outofsurfaces )
         Con_Printf( "Short %d surfaces\n", r_outofsurfaces );

@@ -89,7 +89,7 @@ void VID_MenuKey( int key );
 typedef unsigned short PIXEL16;
 typedef unsigned int PIXEL24;
 static PIXEL16 st2d_8to16table[256];
-static PIXEL24 st2d_8to24table[256];
+PIXEL24 d_8to24table[256];
 static int shiftmask_fl = 0;
 static int r_shift, g_shift, b_shift;
 static unsigned int r_mask, g_mask, b_mask;
@@ -226,14 +226,14 @@ void st3_fixup( XImage *framebuf, int x, int y, int width, int height ) {
         switch ( count % 8 ) {
             case 0:
                 do {
-                   			*dest-- = st2d_8to24table[*src--];
-                    /* fallthrough */ case 7: *dest-- = st2d_8to24table[*src--];
-                    /* fallthrough */ case 6: *dest-- = st2d_8to24table[*src--];
-                    /* fallthrough */ case 5: *dest-- = st2d_8to24table[*src--];
-                    /* fallthrough */ case 4: *dest-- = st2d_8to24table[*src--];
-                    /* fallthrough */ case 3: *dest-- = st2d_8to24table[*src--];
-                    /* fallthrough */ case 2: *dest-- = st2d_8to24table[*src--];
-                    /* fallthrough */ case 1: *dest-- = st2d_8to24table[*src--];
+                   			*dest-- = d_8to24table[*src--];
+                    /* fallthrough */ case 7: *dest-- = d_8to24table[*src--];
+                    /* fallthrough */ case 6: *dest-- = d_8to24table[*src--];
+                    /* fallthrough */ case 5: *dest-- = d_8to24table[*src--];
+                    /* fallthrough */ case 4: *dest-- = d_8to24table[*src--];
+                    /* fallthrough */ case 3: *dest-- = d_8to24table[*src--];
+                    /* fallthrough */ case 2: *dest-- = d_8to24table[*src--];
+                    /* fallthrough */ case 1: *dest-- = d_8to24table[*src--];
                 } while ( --n > 0 );
         }
     }
@@ -624,7 +624,7 @@ void VID_SetPalette( unsigned char *palette ) {
     for ( i = 0; i < 256; i++ ) {
         st2d_8to16table[i] = xlib_rgb16( palette[i * 3], palette[i * 3 + 1],
                                          palette[i * 3 + 2] );
-        st2d_8to24table[i] = xlib_rgb24( palette[i * 3], palette[i * 3 + 1],
+        d_8to24table[i] = xlib_rgb24( palette[i * 3], palette[i * 3 + 1],
                                          palette[i * 3 + 2] );
     }
 

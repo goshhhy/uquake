@@ -810,6 +810,7 @@ void Host_Shutdown( void ) {
     NET_Shutdown();
     S_Shutdown();
     IN_Shutdown();
+    R_Shutdown();
 
     if ( cls.state != ca_dedicated ) {
         VID_Shutdown();

@@ -782,6 +782,7 @@ void R_RenderPoly( msurface_t *fa, int clipflags ) {
 
     // draw the polygon
     D_DrawPoly();
+    Fx_DrawPoly(r_polydesc);
 }
 
 /*

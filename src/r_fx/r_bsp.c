@@ -503,6 +503,7 @@ void R_RecursiveWorldNode( mnode_t *node, int clipflags ) {
                 do {
                     if ( ( surf->flags & SURF_PLANEBACK ) &&
                          ( surf->visframe == r_framecount ) ) {
+                        R_RenderFace( surf, clipflags );
                         if ( r_drawpolys ) {
                             if ( r_worldpolysbacktofront ) {
                                 if ( numbtofpolys < MAX_BTOFPOLYS ) {
@@ -514,8 +515,6 @@ void R_RecursiveWorldNode( mnode_t *node, int clipflags ) {
                             } else {
                                 R_RenderPoly( surf, clipflags );
                             }
-                        } else {
-                            R_RenderFace( surf, clipflags );
                         }
                     }
 
@@ -525,6 +524,7 @@ void R_RecursiveWorldNode( mnode_t *node, int clipflags ) {
                 do {
                     if ( !( surf->flags & SURF_PLANEBACK ) &&
                          ( surf->visframe == r_framecount ) ) {
+                        R_RenderFace( surf, clipflags );
                         if ( r_drawpolys ) {
                             if ( r_worldpolysbacktofront ) {
                                 if ( numbtofpolys < MAX_BTOFPOLYS ) {
@@ -536,9 +536,7 @@ void R_RecursiveWorldNode( mnode_t *node, int clipflags ) {
                             } else {
                                 R_RenderPoly( surf, clipflags );
                             }
-                        } else {
-                            R_RenderFace( surf, clipflags );
-                        }
+                        }   
                     }
 
                     surf++;

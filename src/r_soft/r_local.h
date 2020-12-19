@@ -3,6 +3,7 @@
 
 #ifndef GLQUAKE
 #include "r_shared.h"
+#include <glide.h>
 
 #define ALIAS_BASE_SIZE_RATIO ( 1.0 / 11.0 )
 // normalizing factor so player model works out to about
